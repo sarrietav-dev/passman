@@ -20,6 +20,7 @@
   --success-green: hsl(140, 50%, 55%);
 
   --body-bg-color: hsl(0, 0%, 75%);
+  --input-bg-color: hsl(0, 0%, 90%);
 }
 
 body {
@@ -46,12 +47,12 @@ header {
   font-size: 5rem;
   background-color: var(--body-bg-color);
   width: 8rem;
-	height: 7rem;
+  height: 7rem;
   text-align: center;
   border-radius: 0.5rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .account-name {
@@ -70,13 +71,13 @@ header {
 
   &__field {
     input {
-      font-family: var(--Noto);
-      color: var(--font-color);
+      font-family: inherit;
+      color: inherit;
 
       width: 40%;
       padding: 0.75rem 1rem;
       margin-right: 1rem;
-      background-color: hsl(0, 0%, 90%);
+      background-color: var(--input-bg-color);
 
       outline: none;
       border: none;
@@ -95,6 +96,10 @@ header {
           border-bottom: 0.3rem solid var(--success-green);
         }
       }
+    }
+
+    #password-field {
+      margin-right: -14rem;
     }
   }
 
@@ -119,28 +124,36 @@ header {
   transition: all 0.2s;
 
   i {
-    margin-right: 1rem;
-  }
-
-  &:hover {
-    background-color: hsl(0, 0%, 90%);
-    transform: translateY(-0.25rem);
-    box-shadow: 0 0.5rem 1rem var(--black);
-  }
-
-  &:active {
-    background-color: hsl(0, 0%, 87%);
-    transform: translateY(-0.1rem);
-    box-shadow: 0 0.25rem 1rem var(--black);
+    color: inherit;
   }
 
   &--delete {
     padding: 1rem 1.5rem;
     align-self: flex-start;
 
+    i {
+      margin-right: 1rem;
+    }
+
     &:hover {
+      transform: translateY(-0.25rem);
+      box-shadow: 0 0.5rem 1rem var(--black);
       color: #fff;
       background-color: var(--error-red);
+    }
+
+    &:active {
+      background-color: hsl(0, 0%, 87%);
+      transform: translateY(-0.1rem);
+      box-shadow: 0 0.25rem 1rem var(--black);
+    }
+  }
+
+  &--password {
+    background-color: var(--input-bg-color);
+
+    &:hover i {
+      color: hsl(0, 0%, 60%);
     }
   }
 }

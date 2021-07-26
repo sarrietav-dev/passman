@@ -26,19 +26,20 @@ function App() {
           <input
             type="password"
             name="password"
-            id=""
             className="form__field"
+            id="password-field"
             autoComplete="false"
             required
             placeholder="Password"
           />
-          <button className="btn">
-            <i className="fa fa-refresh"></i>
-            Generate
+          <button className="btn btn--password">
+            <i className="fa fa-eye"></i>
           </button>
-          <button className="btn">
+          <button className="btn btn--password">
+            <i className="fa fa-refresh"></i>
+          </button>
+          <button className="btn btn--password">
             <i className="fa fa-files-o"></i>
-            Copy
           </button>
         </div>
 

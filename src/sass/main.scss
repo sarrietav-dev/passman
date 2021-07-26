@@ -13,13 +13,17 @@
   --Roboto: 'Roboto', sans-serif;
   --Noto: 'Noto Sans JP', sans-serif;
 
-  --black: hsl(0, 0%, 0%);
+  --black: hsla(0, 0%, 0%, 0.3);
+  --font-color: hsl(0, 0%, 30%);
+
+  --error-red: hsl(348, 100%, 50%);
+  --success-green: hsl(140, 50%, 55%);
 }
 
 body {
   height: 100vh;
-  color: hsl(0, 0%, 30%);
-  background-color: hsl(0, 0%, 95%);
+  color: var(--font-color);
+  background-color: hsl(0, 0%, 90%);
   padding: 10rem;
   font-family: var(--Noto);
 }
@@ -54,21 +58,44 @@ header {
   &__field {
     input {
       font-family: var(--Noto);
+      color: var(--font-color);
       width: 40%;
-      padding: 0.5rem 1rem;
-      border: 0.1rem solid hsl(0, 0%, 60%);
+      padding: 0.75rem 1rem;
+      border: none;
       border-radius: 0.3rem;
-      box-shadow: 0 -1rem -2rem --black;
+      margin-right: 1rem;
+      outline: none;
+
+      border-bottom: 0.3rem solid transparent;
+
+      &:focus {
+        box-shadow: 0 1rem 2rem var(--black);
+
+        &:invalid {
+          border-bottom: 0.3rem solid var(--error-red);
+        }
+        &:valid {
+          border-bottom: 0.3rem solid var(--success-green);
+        }
+      }
     }
   }
 
   label {
-		display: block;
-		margin-bottom: .5rem;
-		font-weight: 700;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
   }
 }
 
 .btn {
-  display: inline;
+  color: var(--font-color);
+  font-family: var(--Roboto);
+
+  padding: .5rem 1rem;
+  margin: 0 0.5rem;
+
+  border-radius: 0.3rem;
+  border: 0.1rem solid hsl(0, 0%, 60%);
+  background-color: hsla(0, 0%, 90%, 1);
 }

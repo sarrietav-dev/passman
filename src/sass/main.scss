@@ -45,9 +45,13 @@ header {
 .account-logo {
   font-size: 5rem;
   background-color: var(--body-bg-color);
-  width: 7rem;
+  width: 8rem;
+	height: 7rem;
   text-align: center;
   border-radius: 0.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .account-name {

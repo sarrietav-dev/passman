@@ -11,7 +11,14 @@ function App() {
       <form action="" className="form">
         <div className="form__field">
           <label htmlFor="name">Name</label>
-          <input type="text" name="name" id="" autoComplete="false" required />
+          <input
+            type="text"
+            name="name"
+            id=""
+            autoComplete="false"
+            required
+            placeholder="Name"
+          />
         </div>
 
         <div className="form__field">
@@ -23,6 +30,7 @@ function App() {
             className="form__field"
             autoComplete="false"
             required
+            placeholder="Password"
           />
           <button className="btn">Generate</button>
           <button className="btn">Copy</button>
@@ -36,6 +44,7 @@ function App() {
             id=""
             autoComplete="false"
             required
+            placeholder="Site URL"
           />
         </div>
         <div className="form__field">

@@ -39,7 +39,7 @@ function App() {
             <i className="fa fa-refresh"></i>
           </button>
           <button className="btn btn--password">
-            <i className="fa fa-files-o"></i>
+            <i className="fa fa-copy"></i>
           </button>
         </div>
 

@@ -32,8 +32,14 @@ function App() {
             required
             placeholder="Password"
           />
-          <button className="btn">Generate</button>
-          <button className="btn">Copy</button>
+          <button className="btn">
+            <i className="fa fa-refresh"></i>
+            Generate
+          </button>
+          <button className="btn">
+            <i className="fa fa-files-o"></i>
+            Copy
+          </button>
         </div>
 
         <div className="form__field">

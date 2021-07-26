@@ -114,6 +114,10 @@ header {
 
   transition: all 0.2s;
 
+  i {
+    margin-right: 1rem;
+  }
+
   &:hover {
     background-color: hsl(0, 0%, 90%);
     transform: translateY(-0.25rem);
@@ -129,9 +133,6 @@ header {
   &--delete {
     padding: 1rem 1.5rem;
     align-self: flex-start;
-    i {
-      margin-right: 1rem;
-    }
 
     &:hover {
       color: #fff;

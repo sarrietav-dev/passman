@@ -4,8 +4,10 @@ import './sass/main.scss';
 function App() {
   return (
     <div className="App">
-      <div className="account-logo">A</div>
-      <h1 className="account-name">Account Name</h1>
+      <header>
+        <div className="account-logo">A</div>
+        <h1 className="account-name">Account Name</h1>
+      </header>
       <form action="" className="form">
         <label htmlFor="name">Name</label>
         <input type="text" name="name" id="" className="form__field" />

@@ -9,9 +9,33 @@
 :root {
   font-size: 62.5%;
   box-sizing: border-box;
+
+  --Roboto: 'Roboto', sans-serif;
+  --Noto: 'Noto Sans JP', sans-serif;
 }
 
 body {
   height: 100vh;
-  background-color: hsl(0, 0%, 90%);
+  background-color: hsl(0, 0%, 95%);
+	padding: 10rem;
+  font-family: var(--Noto);
+}
+
+header {
+	font-family: var(--Roboto);
+	display: flex;
+	align-items: center;
+}
+
+.account-logo {
+  font-size: 5rem;
+  background-color: hsl(0, 0%, 75%);
+  width: 7rem;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+
+.account-name {
+	font-size: 3rem;
+	margin-left: 2rem;
 }

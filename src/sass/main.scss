@@ -12,19 +12,22 @@
 
   --Roboto: 'Roboto', sans-serif;
   --Noto: 'Noto Sans JP', sans-serif;
+
+  --black: hsl(0, 0%, 0%);
 }
 
 body {
   height: 100vh;
+  color: hsl(0, 0%, 30%);
   background-color: hsl(0, 0%, 95%);
-	padding: 10rem;
+  padding: 10rem;
   font-family: var(--Noto);
 }
 
 header {
-	font-family: var(--Roboto);
-	display: flex;
-	align-items: center;
+  font-family: var(--Roboto);
+  display: flex;
+  align-items: center;
 }
 
 .account-logo {
@@ -36,6 +39,36 @@ header {
 }
 
 .account-name {
-	font-size: 3rem;
-	margin-left: 2rem;
+  font-size: 3rem;
+  margin-left: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  & > * {
+    margin-top: 2rem;
+  }
+
+  &__field {
+    input {
+      font-family: var(--Noto);
+      width: 40%;
+      padding: 0.5rem 1rem;
+      border: 0.1rem solid hsl(0, 0%, 60%);
+      border-radius: 0.3rem;
+      box-shadow: 0 -1rem -2rem --black;
+    }
+  }
+
+  label {
+		display: block;
+		margin-bottom: .5rem;
+		font-weight: 700;
+  }
+}
+
+.btn {
+  display: inline;
 }

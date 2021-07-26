@@ -25,15 +25,21 @@
 body {
   height: 100vh;
   color: var(--font-color);
-  padding: 10rem;
   font-family: var(--Noto);
+}
+
+.App {
+  padding: 5rem 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100vh;
 }
 
 header {
   font-family: var(--Roboto);
   display: flex;
   align-items: center;
-  margin-bottom: 4rem;
 }
 
 .account-logo {
@@ -52,6 +58,7 @@ header {
 .form {
   display: flex;
   flex-direction: column;
+  margin-top: -2rem;
 
   & > * {
     margin-top: 2rem;
@@ -117,5 +124,18 @@ header {
     background-color: hsl(0, 0%, 87%);
     transform: translateY(-0.1rem);
     box-shadow: 0 0.25rem 1rem var(--black);
+  }
+
+  &--delete {
+    padding: 1rem 1.5rem;
+    align-self: flex-start;
+    i {
+      margin-right: 1rem;
+    }
+
+    &:hover {
+      color: #fff;
+      background-color: var(--error-red);
+    }
   }
 }

@@ -52,6 +52,11 @@ function App() {
           <p className="creation-date">{Date().toString()}</p>
         </div>
       </form>
+
+      <button className="btn btn--delete">
+        <i className="fa fa-trash"></i>
+        Delete
+      </button>
     </div>
   );
 }

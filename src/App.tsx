@@ -11,7 +11,7 @@ function App() {
       <form action="" className="form">
         <div className="form__field">
           <label htmlFor="name">Name</label>
-          <input type="text" name="name" id="" />
+          <input type="text" name="name" id="" autoComplete="false" required />
         </div>
 
         <div className="form__field">
@@ -21,13 +21,22 @@ function App() {
             name="password"
             id=""
             className="form__field"
+            autoComplete="false"
+            required
           />
           <button className="btn">Generate</button>
           <button className="btn">Copy</button>
         </div>
+
         <div className="form__field">
           <label htmlFor="site-url">Site URL</label>
-          <input type="url" name="site-url" id="" />
+          <input
+            type="url"
+            name="site-url"
+            id=""
+            autoComplete="false"
+            required
+          />
         </div>
         <div className="form__field">
           <label htmlFor="">Created at</label>

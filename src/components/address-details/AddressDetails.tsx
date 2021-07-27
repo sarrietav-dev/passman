@@ -119,7 +119,13 @@ export const AddressDetails = () => {
             >
               <i className="fa fa-refresh"></i>
             </button>
-            <button className="btn btn--password">
+            <button
+              className="btn btn--password"
+              onClick={(e) => {
+                e.preventDefault();
+                navigator.clipboard.writeText(passwordFieldRef.current!.value);
+              }}
+            >
               <i className="fa fa-copy"></i>
             </button>
           </div>

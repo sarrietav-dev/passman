@@ -1,3 +1,5 @@
+@import '../../sass/variables.scss';
+
 .address-details {
   --logo-bg-color: hsl(0, 0%, 70%);
 
@@ -7,8 +9,8 @@
   justify-content: space-evenly;
   height: 100vh;
   width: 100%;
-  background-color: var(--main-bg-color);
-  border-left: 0.5px solid var(--black);
+  background-color: $main-bg-color;
+  border-left: 0.5px solid $black;
 
   hr {
     margin: 2rem 0;
@@ -23,7 +25,7 @@
 }
 
 header {
-  font-family: var(--Roboto);
+  font-family: $Roboto;
   display: flex;
   align-items: center;
 }
@@ -44,7 +46,7 @@ header {
     transition: all 0.2s;
 
     &:not(:last-child):hover {
-      background-color: hsla(0, 0%, 100%, 0.1);
+      background-color: rgba($color: $white, $alpha: 0.1);
     }
 
     label {
@@ -70,10 +72,10 @@ header {
 
       &:focus {
         &:invalid {
-          border-bottom: 0.3rem solid var(--error-red);
+          border-bottom: 0.3rem solid $error-red;
         }
         &:valid {
-          border-bottom: 0.3rem solid var(--success-green);
+          border-bottom: 0.3rem solid $success-green;
         }
       }
 

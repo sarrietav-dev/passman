@@ -1,3 +1,5 @@
+@import "sass/variables.scss";
+
 *,
 *::before,
 *::after {
@@ -9,26 +11,13 @@
 :root {
   font-size: 62.5%;
   box-sizing: border-box;
-
-  --Roboto: 'Roboto', sans-serif;
-  --Noto: 'Noto Sans JP', sans-serif;
-
-  --black: hsla(0, 0%, 0%, 0.3);
-  --white: hsl(0, 0%, 100%);
-  --font-color: hsl(0, 0%, 100%);
-
-  --error-red: hsl(348, 100%, 50%);
-  --success-green: hsl(140, 50%, 55%);
-
-  --main-bg-color: hsl(0, 0%, 12%);
-
-  --primary-blue: hsl(211, 100%, 50%);
 }
+
 
 body {
   height: 100vh;
-  color: var(--font-color);
-  font-family: var(--Noto);
+  color: $font-color;
+  font-family: $Noto;
 }
 
 .App {
@@ -38,8 +27,8 @@ body {
 .nav {
   height: 100vh;
   min-width: 25%;
-  background-color: var(--main-bg-color);
-  border-right: 0.5px solid var(--black);
+  background-color: $main-bg-color;
+  border-right: 0.5px solid $black;
   padding: 3rem;
 
   header {

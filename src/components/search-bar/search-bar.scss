@@ -1,5 +1,7 @@
+@import "../../sass/variables.scss";
+
 .search-bar {
-  --grayish-color: hsl(0, 0%, 47%);
+  $grayish-color: hsl(0, 0%, 47%);
 
   display: flex;
   align-items: center;
@@ -9,11 +11,11 @@
   i {
     z-index: 2;
     margin-right: -2rem;
-    color: var(--grayish-color);
+    color: $grayish-color;
   }
 
   input {
-    color: white;
+    color: $white;
     font-family: inherit;
     font-size: inherit;
     border: none;
@@ -25,7 +27,7 @@
     border-radius: 0.5rem;
 
     &::placeholder {
-      color: var(--grayish-color);
+      color: $grayish-color;
     }
   }
 }

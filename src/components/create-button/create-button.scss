@@ -10,14 +10,13 @@
   font-family: $Roboto;
   font-weight: 700;
 
-  transition: all .2s;
+  transition: all 0.2s;
 
   &:hover {
     background-color: lighten($color: $primary-blue, $amount: 7);
   }
 
   &:active {
-
     background-color: lighten($color: $primary-blue, $amount: 3);
   }
 }

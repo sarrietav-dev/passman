@@ -18,4 +18,4 @@ Simple password manager made with React
 
 ## Acknowledgements
 
-- Design forked from [Artem Nosenko vie Dribbble](https://dribbble.com/shots/13907643-Bitwarden-Design-Concept-for-macOS). Big Thanks!
+- Design forked from [Artem Nosenko via Dribbble](https://dribbble.com/shots/13907643-Bitwarden-Design-Concept-for-macOS). Big Thanks!

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './address-details.scss';
 import '../../sass/button.scss';
 import { AddressDetailsForm } from './AddressDetailsForm';
-import { format } from 'path';
 
 export const AddressDetails = () => {
   const [state, setState] = useState({

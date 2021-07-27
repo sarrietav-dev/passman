@@ -1,6 +1,8 @@
+@import "variables.scss";
+
 .btn {
-  color: var(--font-color);
-  font-family: var(--Roboto);
+  color: $font-color;
+  font-family: $Roboto;
   font-size: 1.25rem;
 
   margin: 0 0.5rem;
@@ -28,20 +30,20 @@
 
     &:hover {
       transform: translateY(-0.25rem);
-      box-shadow: 0 0.5rem 1rem var(--black);
+      box-shadow: 0 0.5rem 1rem $black;
       color: #fff;
     }
 
     &:active {
       background-color: hsla(0, 0%, 100%, 0.5);
       transform: translateY(-0.1rem);
-      box-shadow: 0 0.25rem 1rem var(--black);
+      box-shadow: 0 0.25rem 1rem $black;
     }
   }
 
   &--delete {
     &:hover {
-      background-color: var(--error-red);
+      background-color: $error-red;
     }
   }
 

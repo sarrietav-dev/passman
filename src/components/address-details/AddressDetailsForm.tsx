@@ -1,7 +1,6 @@
 import React, { RefObject, useContext, useRef, useState } from 'react';
 import './address-details.scss';
 import '../../sass/button.scss';
-import { VaultItem } from '../../types/types';
 import { Img } from '../Img';
 import { AppContext } from '../../context/AppContext';
 
@@ -12,10 +11,12 @@ interface AddressDetailState {
 
 interface AddressDetailsFormProps {
   editingMode: boolean;
+  handleEditingMode: () => void;
 }
 
 export const AddressDetailsForm = ({
   editingMode,
+  handleEditingMode,
 }: AddressDetailsFormProps) => {
   const item = useContext(AppContext).currentItem;
 
@@ -171,6 +172,21 @@ export const AddressDetailsForm = ({
       <div className="form__field">
         <label htmlFor="">Created at</label>
         <p className="creation-date">{item?.created_at}</p>
+      </div>
+      <div className="action-buttons">
+        <button
+          className={`btn btn--${editingMode ? 'submit' : 'edit'}`}
+          onClick={editingMode ? () => {} : handleEditingMode}
+          type={editingMode ? 'submit' : 'button'}
+          form={editingMode ? 'form' : ''}
+        >
+          <i className={`fa fa-${editingMode ? 'check' : 'pencil'}`}></i>
+          {editingMode ? 'Submit' : 'Edit'}
+        </button>
+        <button className="btn btn--delete">
+          <i className="fa fa-trash"></i>
+          Delete
+        </button>
       </div>
     </>
   );

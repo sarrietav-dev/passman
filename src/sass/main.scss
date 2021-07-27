@@ -14,13 +14,14 @@
   --Noto: 'Noto Sans JP', sans-serif;
 
   --black: hsla(0, 0%, 0%, 0.3);
-  --font-color: hsl(0, 0%, 60%);
+  --white: hsl(0, 0%, 100%);
+  --font-color: hsl(0, 0%, 100%);
 
   --error-red: hsl(348, 100%, 50%);
   --success-green: hsl(140, 50%, 55%);
 
   --main-bg-color: hsl(0, 0%, 12%);
-  --input-bg-color: hsl(0, 0%, 70%);
+  --logo-bg-color: hsl(0, 0%, 70%);
 }
 
 body {
@@ -37,4 +38,5 @@ body {
   height: 100vh;
   min-width: 30%;
   background-color: var(--main-bg-color);
+  border-right: 0.5px solid var(--black);
 }

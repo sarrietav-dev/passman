@@ -1,13 +1,13 @@
 .btn {
   color: var(--font-color);
   font-family: var(--Roboto);
+  font-size: 1.25rem;
 
-  padding: 0.5rem 1rem;
   margin: 0 0.5rem;
 
   border: none;
   border-radius: 0.3rem;
-  background-color: hsl(0, 0%, 85%);
+  background-color: hsla(0, 0%, 100%, 0.2);
 
   transition: all 0.2s;
 
@@ -15,9 +15,12 @@
     color: inherit;
   }
 
-  &--delete {
+  &--delete,
+  &--edit {
     padding: 1rem 1.5rem;
-    align-self: flex-start;
+
+    justify-content: center;
+    align-items: center;
 
     i {
       margin-right: 1rem;
@@ -27,18 +30,24 @@
       transform: translateY(-0.25rem);
       box-shadow: 0 0.5rem 1rem var(--black);
       color: #fff;
-      background-color: var(--error-red);
     }
 
     &:active {
-      background-color: hsl(0, 0%, 87%);
+      background-color: hsla(0, 0%, 100%, 0.5);
       transform: translateY(-0.1rem);
       box-shadow: 0 0.25rem 1rem var(--black);
     }
   }
 
+  &--delete {
+    &:hover {
+      background-color: var(--error-red);
+    }
+  }
+
   &--password {
     background-color: var(--input-bg-color);
+    padding: 0.5rem 1rem;
 
     &:hover i {
       color: hsl(0, 0%, 60%);

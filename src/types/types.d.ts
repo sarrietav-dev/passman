@@ -6,5 +6,14 @@ export interface VaultItem {
   password: string;
   site_url: string;
   logo_url: string;
-  created_at: Date;
+  created_at: string;
+}
+
+export interface PasswordFormFieldValues {
+  accountName: string;
+  username: string;
+  password: string;
+  url: string;
+  logoUrl: string;
+  create_date: Date;
 }

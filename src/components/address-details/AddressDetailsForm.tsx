@@ -29,6 +29,7 @@ export const AddressDetailsForm = ({
   const usernameFieldRef = useRef<HTMLInputElement>(null);
   const passwordFieldRef = useRef<HTMLInputElement>(null);
   const urlFieldRef = useRef<HTMLInputElement>(null);
+  const logoFieldRef = useRef<HTMLInputElement>(null);
 
   const focusInput = (ref: RefObject<HTMLInputElement>) => {
     ref.current?.focus();
@@ -165,6 +166,22 @@ export const AddressDetailsForm = ({
           autoComplete="false"
           required
           ref={urlFieldRef}
+          disabled={!editingMode}
+          value={item?.site_url}
+        />
+      </div>
+      <div
+        className={`form__field ${!editingMode ? 'form__field--disabled' : ''}`}
+        onClick={() => focusInput(logoFieldRef)}
+      >
+        <label htmlFor="site-url">Logo URL</label>
+        <input
+          type="url"
+          name="site-url"
+          id=""
+          autoComplete="false"
+          required
+          ref={logoFieldRef}
           disabled={!editingMode}
           value={item?.site_url}
         />

@@ -21,6 +21,8 @@
   --success-green: hsl(140, 50%, 55%);
 
   --main-bg-color: hsl(0, 0%, 12%);
+
+  --primary-blue: hsl(211, 100%, 50%);
 }
 
 body {
@@ -39,4 +41,9 @@ body {
   background-color: var(--main-bg-color);
   border-right: 0.5px solid var(--black);
   padding: 3rem;
+
+  header {
+    display: flex;
+    align-items: stretch;
+  }
 }

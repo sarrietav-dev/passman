@@ -1,4 +1,4 @@
-@import "../../sass/variables.scss";
+@import '../../sass/variables.scss';
 
 .search-bar {
   $grayish-color: hsl(0, 0%, 47%);
@@ -15,19 +15,25 @@
   }
 
   input {
+    $bg-color: hsl(0, 0%, 25%);
     color: $white;
     font-family: inherit;
     font-size: inherit;
     border: none;
     padding: 0.75rem 2rem;
     padding-left: 3rem;
-    background-color: hsl(0, 0%, 25%);
+    background-color: $bg-color;
     width: 100%;
     outline: none;
     border-radius: 0.5rem;
+    transition: all 0.2s;
 
     &::placeholder {
       color: $grayish-color;
+    }
+
+    &:focus {
+      background-color: darken($color: $bg-color, $amount: 7);
     }
   }
 }

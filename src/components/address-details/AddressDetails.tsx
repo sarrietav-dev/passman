@@ -4,6 +4,7 @@ import '../../sass/button.scss';
 
 export const AddressDetails = () => {
   const nameFieldRef = useRef<HTMLInputElement>(null);
+  const usernameFieldRef = useRef<HTMLInputElement>(null);
   const passwordFieldRef = useRef<HTMLInputElement>(null);
   const urlFieldRef = useRef<HTMLInputElement>(null);
 
@@ -23,21 +24,34 @@ export const AddressDetails = () => {
           Delete
         </button>
       </div>
-      <header>
-        <div className="account-logo">A</div>
-        <h1 className="account-name">Account Name</h1>
-      </header>
-      <hr />
       <form action="" className="form">
-        <div className="form__field" onClick={() => focusInput(nameFieldRef)}>
-          <label htmlFor="name">Name</label>
+        <header
+          className="form__field form__field--header"
+          onClick={() => focusInput(nameFieldRef)}
+        >
+          <span className="account-logo">A</span>
           <input
             type="text"
-            name="name"
+            name=""
+            id=""
+            className="account-name"
+            placeholder="Account name"
+            ref={nameFieldRef}
+          />
+        </header>
+        <hr />
+        <div
+          className="form__field"
+          onClick={() => focusInput(usernameFieldRef)}
+        >
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            name="username"
             id=""
             autoComplete="false"
             required
-            ref={nameFieldRef}
+            ref={usernameFieldRef}
           />
         </div>
 

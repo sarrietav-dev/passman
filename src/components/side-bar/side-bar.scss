@@ -1,0 +1,14 @@
+@import '../../sass/variables.scss';
+
+.nav {
+  min-width: 25%;
+  background-color: $main-bg-color;
+  border-right: 0.5px solid $black;
+  padding: 3rem;
+  height: 100vh;
+
+  header {
+    display: flex;
+    align-items: stretch;
+  }
+}

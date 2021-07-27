@@ -35,10 +35,6 @@ header {
   flex-direction: column;
   margin-top: -2rem;
 
-  & > * {
-    margin-top: 2rem;
-  }
-
   &__field {
     padding: 1rem 2rem;
     display: inline-block;
@@ -102,12 +98,12 @@ header {
       justify-content: center;
       align-items: center;
 
-    img {
-      width: 100%;
-      z-index: 1;
-      border-radius: 0.5rem;
-      margin: auto;
-    }
+      img {
+        width: 100%;
+        z-index: 1;
+        border-radius: 0.5rem;
+        margin: auto;
+      }
     }
 
     .account-name {
@@ -117,9 +113,9 @@ header {
     }
 
     &--header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-direction: row;
     }
 

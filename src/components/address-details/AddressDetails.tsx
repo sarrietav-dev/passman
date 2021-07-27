@@ -2,8 +2,16 @@ import React, { RefObject, useRef, useState } from 'react';
 import './address-details.scss';
 import '../../sass/button.scss';
 
+interface AddressDetailState {
+  name: string | undefined;
+  showPassword: boolean;
+}
+
 export const AddressDetails = () => {
-  const [name, setName] = useState<string>();
+  const [state, setState] = useState<AddressDetailState>({
+    name: undefined,
+    showPassword: false,
+  });
 
   const nameFieldRef = useRef<HTMLInputElement>(null);
   const usernameFieldRef = useRef<HTMLInputElement>(null);
@@ -32,7 +40,7 @@ export const AddressDetails = () => {
           onClick={() => focusInput(nameFieldRef)}
         >
           <span className="account-logo">
-            {name?.charAt(0).toUpperCase() ?? '@'}
+            {state.name?.charAt(0).toUpperCase() ?? '@'}
           </span>
           <input
             type="text"
@@ -41,7 +49,8 @@ export const AddressDetails = () => {
             className="account-name"
             placeholder="Account name"
             onChange={(e) => {
-              if (e.target.value !== '') setName(e.target.value);
+              if (e.target.value !== '')
+                setState({ ...state, name: e.target.value });
             }}
             ref={nameFieldRef}
           />
@@ -69,7 +78,7 @@ export const AddressDetails = () => {
           <div className="password-field-wrapper">
             <label htmlFor="password">Password</label>
             <input
-              type="password"
+              type={state.showPassword ? 'text' : 'password'}
               name="password"
               className="form__field"
               id="password-field"
@@ -79,8 +88,16 @@ export const AddressDetails = () => {
             />
           </div>
           <div className="password-buttons">
-            <button className="btn btn--password">
-              <i className="fa fa-eye"></i>
+            <button
+              className="btn btn--password"
+              onClick={(e) => {
+                e.preventDefault();
+                setState({ ...state, showPassword: !state.showPassword });
+              }}
+            >
+              <i
+                className={`fa fa-eye${state.showPassword ? '-slash' : ''}`}
+              ></i>
             </button>
             <button className="btn btn--password">
               <i className="fa fa-refresh"></i>

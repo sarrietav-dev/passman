@@ -14,15 +14,18 @@ export const VaultItem = ({
   title,
   username,
 }: VaultItemProps) => {
+  console.log(imageUrl);
   return (
     <div className={`vault-item ${active ? 'vault-item--active' : ''}`}>
       <div className="vault-item__image">
-        {(
+        {imageUrl ? (
           <img
             src={imageUrl}
             alt="Vault item logo. Probably a logo of a company."
           />
-        ) ?? title.charAt(0).toUpperCase()}
+        ) : (
+          title.charAt(0).toUpperCase()
+        )}
       </div>
       <div className="vault-item__info">
         <div className="vault-item__title">{title}</div>

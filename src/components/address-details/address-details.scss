@@ -49,6 +49,12 @@ header {
       background-color: rgba($color: $white, $alpha: 0.1);
     }
 
+    &--disabled {
+      &:not(:last-child):hover {
+        background-color: transparent;
+      }
+    }
+
     label {
       font-size: 1.25rem;
       opacity: 0.5;

@@ -1,6 +1,9 @@
-import React, { RefObject, useRef, useState } from 'react';
+import React, { RefObject, useContext, useRef, useState } from 'react';
 import './address-details.scss';
 import '../../sass/button.scss';
+import { VaultItem } from '../../types/types';
+import { Img } from '../Img';
+import { AppContext } from '../../context/AppContext';
 
 interface AddressDetailState {
   name: string | undefined;
@@ -14,6 +17,8 @@ interface AddressDetailsFormProps {
 export const AddressDetailsForm = ({
   editingMode,
 }: AddressDetailsFormProps) => {
+  const item = useContext(AppContext).currentItem;
+
   const [state, setState] = useState<AddressDetailState>({
     name: undefined,
     showPassword: false,
@@ -38,6 +43,14 @@ export const AddressDetailsForm = ({
     }
     return retVal;
   }
+
+  const getLogoText = () => {
+    if (item) return item?.account_name.charAt(0).toUpperCase();
+    return state.name === undefined || state.name === ''
+      ? '@'
+      : state.name.charAt(0).toUpperCase();
+  };
+
   return (
     <>
       <header
@@ -47,7 +60,11 @@ export const AddressDetailsForm = ({
         onClick={() => focusInput(nameFieldRef)}
       >
         <span className="account-logo">
-          {state.name?.charAt(0).toUpperCase() ?? '@'}
+          {item?.logo_url === '' || item === undefined ? (
+            getLogoText()
+          ) : (
+            <Img url={item?.logo_url} title={getLogoText()} />
+          )}
         </span>
         <input
           type="text"
@@ -61,6 +78,7 @@ export const AddressDetailsForm = ({
           }}
           ref={nameFieldRef}
           disabled={!editingMode}
+          value={item?.account_name}
         />
       </header>
       <hr />
@@ -77,6 +95,7 @@ export const AddressDetailsForm = ({
           required
           ref={usernameFieldRef}
           disabled={!editingMode}
+          value={item?.username}
         />
       </div>
 
@@ -97,6 +116,7 @@ export const AddressDetailsForm = ({
             required
             ref={passwordFieldRef}
             disabled={!editingMode}
+            value={item?.password}
           />
         </div>
         <div className="password-buttons">
@@ -145,11 +165,12 @@ export const AddressDetailsForm = ({
           required
           ref={urlFieldRef}
           disabled={!editingMode}
+          value={item?.site_url}
         />
       </div>
       <div className="form__field">
         <label htmlFor="">Created at</label>
-        <p className="creation-date">{Date().toString()}</p>
+        <p className="creation-date">{item?.created_at}</p>
       </div>
     </>
   );

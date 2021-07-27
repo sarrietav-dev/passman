@@ -6,6 +6,7 @@ interface VaultItemProps {
   imageUrl?: string;
   title: string;
   username: string;
+  onClick: () => void;
 }
 
 export const VaultItem = ({
@@ -13,10 +14,15 @@ export const VaultItem = ({
   imageUrl,
   title,
   username,
+  onClick,
 }: VaultItemProps) => {
   const [imgError, setImgError] = useState(false);
+
   return (
-    <div className={`vault-item ${active ? 'vault-item--active' : ''}`}>
+    <div
+      className={`vault-item ${active ? 'vault-item--active' : ''}`}
+      onClick={onClick}
+    >
       <div className="vault-item__image">
         {imageUrl ? (
           !imgError ? (

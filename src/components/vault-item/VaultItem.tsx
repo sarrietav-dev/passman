@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './vault-item.scss';
 
 interface VaultItemProps {
@@ -14,15 +14,22 @@ export const VaultItem = ({
   title,
   username,
 }: VaultItemProps) => {
-  console.log(imageUrl);
+  const [imgError, setImgError] = useState(false);
   return (
     <div className={`vault-item ${active ? 'vault-item--active' : ''}`}>
       <div className="vault-item__image">
         {imageUrl ? (
-          <img
-            src={imageUrl}
-            alt="Vault item logo. Probably a logo of a company."
-          />
+          !imgError ? (
+            <img
+              src={imageUrl}
+              alt="Vault item logo. Probably a logo of a company."
+              onError={() => {
+                setImgError(true);
+              }}
+            />
+          ) : (
+            title.charAt(0).toUpperCase()
+          )
         ) : (
           title.charAt(0).toUpperCase()
         )}

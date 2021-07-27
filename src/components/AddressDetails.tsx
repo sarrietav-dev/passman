@@ -1,4 +1,5 @@
 import React from 'react';
+import "./address-details.scss";
 
 export const AddressDetails = () => {
   return (

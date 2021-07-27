@@ -37,8 +37,8 @@ export const AddressDetails = () => {
     <div className="address-details">
       <div className="action-buttons">
         <div className="btn btn--edit">
-          <i className="fa fa-pencil"></i>
-          Edit
+          <i className="fa fa-check"></i>
+          Save
         </div>
         <button className="btn btn--delete">
           <i className="fa fa-trash"></i>

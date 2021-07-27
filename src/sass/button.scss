@@ -41,6 +41,10 @@
     }
   }
 
+  &--edit {
+    background-color: $success-green;
+  }
+
   &--delete {
     &:hover {
       background-color: $error-red;

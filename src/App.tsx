@@ -13,7 +13,7 @@ function App() {
           <SearchBar />
           <CreateButton />
         </header>
-        <VaultItem title="Facebook" username="sarrietav" />
+        <VaultItem title="Facebook" username="sarrietav" active />
         <VaultItem title="Whatsapp" username="sarrietav@gmail.com" />
         <VaultItem title="Instagram" username="sarrietav@protonmail.com" />
         <VaultItem title="College" username="sarrietav@unicartagena.edu.co" />

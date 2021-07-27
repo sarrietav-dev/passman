@@ -1,0 +1,64 @@
+@import '../../sass/variables.scss';
+
+.vault-item {
+  width: 100%;
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: stretch;
+  border-radius: 1rem;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: rgba($color: $white, $alpha: 0.1);
+  }
+
+  &:active {
+    background-color: rgba($color: darken($white, 10), $alpha: 0.1);
+  }
+
+  &--active {
+    background-color: $primary-blue;
+
+    &:hover {
+      background-color: darken($color: $primary-blue, $amount: 5);
+    }
+
+    &:active {
+      background-color: darken($color: $primary-blue, $amount: 8);
+    }
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    background-color: darken(hsl(211, 100%, 50%), $amount: 20);
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+
+    img {
+      height: 100%;
+      margin: auto;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 2rem;
+  }
+
+  &__title {
+    font-family: $Roboto;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  &__username {
+    opacity: 0.5;
+  }
+}

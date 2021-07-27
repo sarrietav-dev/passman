@@ -14,10 +14,22 @@ function App() {
   );
 
   const addItem = (item: VaultItem) => {
-    axios
+    return axios
       .post('http://localhost:8000/passwords', item)
       .then(() => setVaultItems([...vaultItems, item]));
   };
+
+  const updateItem = (item: VaultItem) => {
+    return axios
+      .patch(`http://localhost:8000/passwords/${item.id}`, item)
+      .then(() => {
+        setVaultItems([...vaultItems.filter((i) => i.id !== item.id), item]);
+      })
+      .then(() => {
+        setCurrentItemContext(item.id);
+      });
+  };
+
   const setCurrentItemContext = (itemId: string) =>
     setCurrentItem(vaultItems.filter((item) => item.id === itemId)[0]);
 
@@ -34,6 +46,7 @@ function App() {
         currentItem,
         setCurrentItem: setCurrentItemContext,
         vaultItems,
+        updateItem,
       }}
     >
       <div className="App">

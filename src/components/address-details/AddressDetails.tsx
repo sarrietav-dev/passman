@@ -1,23 +1,23 @@
-import React, { FormEvent, Ref, useContext, useState } from 'react';
+import React from 'react';
+import { useContext, useState } from 'react';
 import './address-details.scss';
 import '../../sass/button.scss';
 import { AddressDetailsForm } from './AddressDetailsForm';
-import { VaultItem } from '../../types/types';
 import { AppContext } from '../../context/AppContext';
 import { v4 as uuid } from 'uuid';
-import axios from 'axios';
 
 export const AddressDetails = () => {
   const app = useContext(AppContext);
 
   const [state, setState] = useState({
     editingMode: false,
+    loading: false,
   });
 
-  const handleEditingMode = () => setState({ editingMode: !state.editingMode });
+  const handleEditingMode = () =>
+    setState({ ...state, editingMode: !state.editingMode });
 
   const onSubmit = (e: any) => {
-    e.preventDefault();
     const [id, account_name, username, password, url, logoUrl, created_at] = [
       uuid(),
       e.target['0'].value,
@@ -28,16 +28,39 @@ export const AddressDetails = () => {
       Date(),
     ];
 
-    app.addItem({
-      account_name: account_name as string,
-      id,
-      created_at,
-      username: username as string,
-      password: password as string,
-      site_url: url as string,
-      logo_url: logoUrl as string,
-    });
-    handleEditingMode();
+    setState({ ...state, loading: true });
+    if (app.currentItem === undefined) {
+      app
+        .addItem({
+          account_name: account_name as string,
+          id,
+          created_at,
+          username: username as string,
+          password: password as string,
+          site_url: url as string,
+          logo_url: logoUrl as string,
+        })
+        .then(() => {
+          setState({ ...state, loading: false });
+
+          handleEditingMode();
+        });
+    } else {
+      app
+        .updateItem({
+          account_name: account_name as string,
+          id: app.currentItem.id,
+          created_at,
+          username: username as string,
+          password: password as string,
+          site_url: url as string,
+          logo_url: logoUrl as string,
+        })
+        .then(() => {
+          setState({ ...state, loading: false });
+          handleEditingMode();
+        });
+    }
   };
 
   const getFormParent = () => {
@@ -57,5 +80,9 @@ export const AddressDetails = () => {
     );
   };
 
-  return <div className="address-details">{getFormParent()}</div>;
+  return (
+    <div className="address-details">
+      {state.loading ? 'LOADING' : getFormParent()}
+    </div>
+  );
 };

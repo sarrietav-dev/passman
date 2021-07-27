@@ -71,7 +71,6 @@ export const AddressDetailsForm = ({
         <input
           type="text"
           name=""
-          id=""
           className="account-name"
           placeholder="Account name"
           onChange={(e) => {
@@ -80,7 +79,8 @@ export const AddressDetailsForm = ({
           }}
           ref={nameFieldRef}
           disabled={!editingMode}
-          value={item?.account_name}
+          required
+          defaultValue={item?.account_name}
         />
       </header>
       <hr />
@@ -92,12 +92,11 @@ export const AddressDetailsForm = ({
         <input
           type="text"
           name="username"
-          id=""
           autoComplete="false"
           required
           ref={usernameFieldRef}
           disabled={!editingMode}
-          value={item?.username}
+          defaultValue={item?.username}
         />
       </div>
 
@@ -118,7 +117,7 @@ export const AddressDetailsForm = ({
             required
             ref={passwordFieldRef}
             disabled={!editingMode}
-            value={item?.password}
+            defaultValue={item?.password}
           />
         </div>
         <div className="password-buttons">
@@ -167,7 +166,7 @@ export const AddressDetailsForm = ({
           required
           ref={urlFieldRef}
           disabled={!editingMode}
-          value={item?.site_url}
+          defaultValue={item?.site_url}
         />
       </div>
       <div
@@ -180,10 +179,9 @@ export const AddressDetailsForm = ({
           name="site-url"
           id=""
           autoComplete="false"
-          required
           ref={logoFieldRef}
           disabled={!editingMode}
-          value={item?.site_url}
+          defaultValue={item?.logo_url}
         />
       </div>
       <div className="form__field">

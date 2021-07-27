@@ -5,6 +5,7 @@ import { VaultItem } from '../vault-item/VaultItem';
 import { VaultItem as VaultItemApi } from '../../types/types';
 import { v4 as uuid } from 'uuid';
 import { AppContext } from '../../context/AppContext';
+import "./side-bar.scss";
 
 interface SideBarProps {
   vaultItems: VaultItemApi[];

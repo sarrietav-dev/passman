@@ -2,12 +2,12 @@
   "passwords": [
     {
       "id": "1",
-      "account_name": "Facebook",
+      "account_name": "Faceboo",
       "username": "sarrietav",
       "password": "Abcde",
       "site_url": "http://www.facebook.com",
       "logo_url": "https://static.xx.fbcdn.net/rsrc.php/v3/yN/r/EWLVhDVJTum.png",
-      "created_at": "Now"
+      "created_at": "Tue Jul 27 2021 18:22:46 GMT-0500 (Colombia Standard Time)"
     },
     {
       "id": "2",
@@ -25,7 +25,7 @@
       "password": "Abcde",
       "site_url": "http://www.instagram.com",
       "logo_url": "https://www.instagram.com/static/images/ico/apple-touch-icon-180x180-precomposed.png/c06fdb2357bd.png",
-      "created_at": "Now"
+      "created_at": "Tue Jul 27 2021 18:36:30 GMT-0500 (Colombia Standard Time)"
     },
     {
       "id": "4",
@@ -34,7 +34,7 @@
       "password": "Abcde",
       "site_url": "http://www.unicartagena.edu.co",
       "logo_url": "",
-      "created_at": "Now"
+      "created_at": "Tue Jul 27 2021 18:21:10 GMT-0500 (Colombia Standard Time)"
     },
     {
       "account_name": "Facebook",

@@ -7,7 +7,6 @@ interface ImgProps {
 
 export const Img = ({ url, title }: ImgProps) => {
   const [imgError, setImgError] = useState(false);
-  console.log(url, title);
 
   const getJsx = () => {
     if (url !== '' || url !== undefined) {

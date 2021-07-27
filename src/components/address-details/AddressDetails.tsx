@@ -1,6 +1,6 @@
 import React, { RefObject, useRef } from 'react';
 import './address-details.scss';
-import '../sass/button.scss';
+import '../../sass/button.scss';
 
 export const AddressDetails = () => {
   const nameFieldRef = useRef<HTMLInputElement>(null);

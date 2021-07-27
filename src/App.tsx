@@ -1,6 +1,6 @@
 import React from 'react';
 import { AddressDetails } from './components/AddressDetails';
-import './sass/main.scss';
+import './App.scss';
 
 function App() {
   return (

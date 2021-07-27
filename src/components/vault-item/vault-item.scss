@@ -34,14 +34,20 @@
     justify-content: center;
     align-items: center;
     width: 15%;
-    background-color: darken(hsl(211, 100%, 50%), $amount: 20);
+    background-color: $grayish-color;
     font-size: 1.5rem;
     border-radius: 0.5rem;
 
     img {
-      height: 100%;
+      width: 100%;
+      z-index: 1;
+      border-radius: 0.5rem;
       margin: auto;
     }
+  }
+
+  &--active &__image {
+    background-color: darken(hsl(211, 100%, 50%), $amount: 20);
   }
 
   &__info {

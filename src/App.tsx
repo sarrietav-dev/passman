@@ -15,7 +15,7 @@ function App() {
 
   const addItem = (item: VaultItem) => {
     axios
-      .post('http://localhost:8000/passwords', currentItem)
+      .post('http://localhost:8000/passwords', item)
       .then(() => setVaultItems([...vaultItems, item]));
   };
   const setCurrentItemContext = (itemId: string) =>

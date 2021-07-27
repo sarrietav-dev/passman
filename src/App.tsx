@@ -1,7 +1,7 @@
 import React from 'react';
-import { AddressDetails } from './components/AddressDetails';
+import { AddressDetails } from './components/address-details/AddressDetails';
 import './App.scss';
-import { SearchBar } from './components/SearchBar';
+import { SearchBar } from './components/search-bar/SearchBar';
 
 function App() {
   return (

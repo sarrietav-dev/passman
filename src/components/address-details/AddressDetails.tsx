@@ -22,6 +22,17 @@ export const AddressDetails = () => {
     ref.current?.focus();
   };
 
+  function generatePassword() {
+    var length = 12,
+      charset =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+      retVal = '';
+    for (var i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+  }
+
   return (
     <div className="address-details">
       <div className="action-buttons">
@@ -99,7 +110,13 @@ export const AddressDetails = () => {
                 className={`fa fa-eye${state.showPassword ? '-slash' : ''}`}
               ></i>
             </button>
-            <button className="btn btn--password">
+            <button
+              className="btn btn--password"
+              onClick={(e) => {
+                e.preventDefault();
+                passwordFieldRef.current!.value = generatePassword();
+              }}
+            >
               <i className="fa fa-refresh"></i>
             </button>
             <button className="btn btn--password">

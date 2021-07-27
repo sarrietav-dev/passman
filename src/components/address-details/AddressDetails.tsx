@@ -1,8 +1,10 @@
-import React, { RefObject, useRef } from 'react';
+import React, { RefObject, useRef, useState } from 'react';
 import './address-details.scss';
 import '../../sass/button.scss';
 
 export const AddressDetails = () => {
+  const [name, setName] = useState<string>();
+
   const nameFieldRef = useRef<HTMLInputElement>(null);
   const usernameFieldRef = useRef<HTMLInputElement>(null);
   const passwordFieldRef = useRef<HTMLInputElement>(null);
@@ -29,13 +31,18 @@ export const AddressDetails = () => {
           className="form__field form__field--header"
           onClick={() => focusInput(nameFieldRef)}
         >
-          <span className="account-logo">A</span>
+          <span className="account-logo">
+            {name?.charAt(0).toUpperCase() ?? '@'}
+          </span>
           <input
             type="text"
             name=""
             id=""
             className="account-name"
             placeholder="Account name"
+            onChange={(e) => {
+              if (e.target.value !== '') setName(e.target.value);
+            }}
             ref={nameFieldRef}
           />
         </header>

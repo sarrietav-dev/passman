@@ -1,8 +1,8 @@
-import React, { RefObject, useContext, useRef, useState } from 'react';
+import React, { RefObject, useRef, useState } from 'react';
 import './address-details.scss';
 import '../../sass/button.scss';
 import { Img } from '../Img';
-import { AppContext } from '../../context/AppContext';
+import { useAppSelector } from '../../store/hooks';
 
 interface AddressDetailState {
   name: string | undefined;
@@ -18,7 +18,7 @@ export const AddressDetailsForm = ({
   editingMode,
   handleEditingMode,
 }: AddressDetailsFormProps) => {
-  const item = useContext(AppContext).currentItem;
+  const { currentItem } = useAppSelector((state) => state.app);
 
   const [state, setState] = useState<AddressDetailState>({
     name: undefined,
@@ -47,7 +47,7 @@ export const AddressDetailsForm = ({
   }
 
   const getLogoText = () => {
-    if (item) return item?.account_name.charAt(0).toUpperCase();
+    if (currentItem) return currentItem?.account_name.charAt(0).toUpperCase();
     return state.name === undefined || state.name === ''
       ? '@'
       : state.name.charAt(0).toUpperCase();
@@ -62,10 +62,10 @@ export const AddressDetailsForm = ({
         onClick={() => focusInput(nameFieldRef)}
       >
         <span className="account-logo">
-          {item?.logo_url === '' || item === undefined ? (
+          {currentItem?.logo_url === '' || currentItem === undefined ? (
             getLogoText()
           ) : (
-            <Img url={item?.logo_url} title={getLogoText()} />
+            <Img url={currentItem?.logo_url} title={getLogoText()} />
           )}
         </span>
         <input
@@ -80,7 +80,7 @@ export const AddressDetailsForm = ({
           ref={nameFieldRef}
           disabled={!editingMode}
           required
-          defaultValue={item?.account_name}
+          defaultValue={currentItem?.account_name}
         />
       </header>
       <hr />
@@ -96,7 +96,7 @@ export const AddressDetailsForm = ({
           required
           ref={usernameFieldRef}
           disabled={!editingMode}
-          defaultValue={item?.username}
+          defaultValue={currentItem?.username}
         />
       </div>
 
@@ -117,7 +117,7 @@ export const AddressDetailsForm = ({
             required
             ref={passwordFieldRef}
             disabled={!editingMode}
-            defaultValue={item?.password}
+            defaultValue={currentItem?.password}
           />
         </div>
         <div className="password-buttons">
@@ -166,7 +166,7 @@ export const AddressDetailsForm = ({
           required
           ref={urlFieldRef}
           disabled={!editingMode}
-          defaultValue={item?.site_url}
+          defaultValue={currentItem?.site_url}
         />
       </div>
       <div
@@ -181,12 +181,12 @@ export const AddressDetailsForm = ({
           autoComplete="false"
           ref={logoFieldRef}
           disabled={!editingMode}
-          defaultValue={item?.logo_url}
+          defaultValue={currentItem?.logo_url}
         />
       </div>
       <div className="form__field">
         <label htmlFor="">Created at</label>
-        <p className="creation-date">{item?.created_at}</p>
+        <p className="creation-date">{currentItem?.created_at}</p>
       </div>
       <div className="action-buttons">
         <button

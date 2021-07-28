@@ -1,18 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { SearchBar } from '../search-bar/SearchBar';
 import { CreateButton } from '../create-button/CreateButton';
 import { VaultItem } from '../vault-item/VaultItem';
-import { VaultItem as VaultItemApi } from '../../types/types';
 import { v4 as uuid } from 'uuid';
-import { AppContext } from '../../context/AppContext';
-import "./side-bar.scss";
 
-interface SideBarProps {
-  vaultItems: VaultItemApi[];
-}
+import './side-bar.scss';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { setCurrentItem } from '../../store/reducers/AppReducer.reducer';
 
-export const SideBar = ({ vaultItems }: SideBarProps) => {
-  const context = useContext(AppContext);
+export const SideBar = () => {
+  const { vaultItems, currentItem } = useAppSelector((state) => state.app);
+  const dispatch = useAppDispatch();
+
   return (
     <nav className="nav">
       <header>
@@ -21,12 +20,12 @@ export const SideBar = ({ vaultItems }: SideBarProps) => {
       </header>
       {vaultItems.map((item) => (
         <VaultItem
-          onClick={() => context.setCurrentItem(item.id)}
+          onClick={() => dispatch(setCurrentItem(item.id))}
           title={item.account_name}
           username={item.username}
           imageUrl={item.logo_url}
           key={uuid()}
-          active={context.currentItem?.id === item.id}
+          active={currentItem?.id === item.id}
         />
       ))}
     </nav>

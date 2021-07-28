@@ -5,10 +5,18 @@
   background-color: $main-bg-color;
   border-right: 0.5px solid $black;
   padding: 3rem;
+  padding-right: 0;
   height: 100vh;
+
+  .vault-items {
+    height: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
 
   header {
     display: flex;
     align-items: stretch;
+    padding-right: 3rem;
   }
 }

@@ -18,16 +18,18 @@ export const SideBar = () => {
         <SearchBar />
         <CreateButton />
       </header>
-      {vaultItems.map((item) => (
-        <VaultItem
-          onClick={() => dispatch(setCurrentItem(item.id))}
-          title={item.account_name}
-          username={item.username}
-          imageUrl={item.logo_url}
-          key={uuid()}
-          active={currentItem?.id === item.id}
-        />
-      ))}
+      <div className="vault-items">
+        {vaultItems.map((item) => (
+          <VaultItem
+            onClick={() => dispatch(setCurrentItem(item.id))}
+            title={item.account_name}
+            username={item.username}
+            imageUrl={item.logo_url}
+            key={uuid()}
+            active={currentItem?.id === item.id}
+          />
+        ))}
+      </div>
     </nav>
   );
 };

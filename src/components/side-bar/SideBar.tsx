@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 
 import './side-bar.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { setCurrentItem } from '../../store/reducers/App.reducer';
+import { orderItems, setCurrentItem } from '../../store/reducers/App.reducer';
 
 export const SideBar = () => {
   const [searchString, setSearchString] = useState('');
@@ -38,6 +38,11 @@ export const SideBar = () => {
         <SearchBar changeSearchString={setSearchString} />
         <CreateButton />
       </header>
+      <div className="order-buttons">
+        Sort by Date:
+        <button className="btn" onClick={() => dispatch(orderItems('DESC'))}>DESC</button>
+        <button className="btn" onClick={() => dispatch(orderItems('ASC'))}>ASC</button>
+      </div>
       <div className="vault-items">{renderVaultItem()}</div>
     </nav>
   );

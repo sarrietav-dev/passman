@@ -1,4 +1,4 @@
-@import "variables.scss";
+@import 'variables.scss';
 
 .btn {
   color: $font-color;
@@ -13,12 +13,21 @@
 
   transition: all 0.2s;
 
+  &:hover {
+    background-color: hsla(0, 0%, 100%, 0.5);
+  }
+
+  &:active {
+    background-color: hsla(0, 0%, 100%, 0.3);
+  }
+
   i {
     color: inherit;
   }
 
   &--delete,
-  &--edit, &--submit {
+  &--edit,
+  &--submit {
     padding: 1rem 1.5rem;
 
     justify-content: center;

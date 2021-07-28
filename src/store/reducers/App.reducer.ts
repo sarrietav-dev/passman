@@ -35,9 +35,16 @@ export const appSlice = createSlice({
       vaultItems.push(action.payload);
       state.vaultItems = vaultItems;
     },
+    orderItems(state, action: PayloadAction<'DESC' | 'ASC'>) {
+      state.vaultItems = state.vaultItems.sort(
+        (a, b) => Date.parse(a.created_at) - Date.parse(b.created_at),
+      );
+      if (action.payload === 'DESC')
+        state.vaultItems = state.vaultItems.reverse();
+    },
   },
 });
 
-export const { addItem, setCurrentItem, updateItem, setItems } =
+export const { addItem, setCurrentItem, updateItem, setItems, orderItems } =
   appSlice.actions;
 export default appSlice.reducer;

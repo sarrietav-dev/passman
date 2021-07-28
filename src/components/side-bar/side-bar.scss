@@ -19,4 +19,17 @@
     align-items: stretch;
     padding-right: 3rem;
   }
+
+  .order-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding-right: 3rem;
+    margin: 1rem 0;
+
+    .btn {
+      padding: 0.25rem 0.5rem;
+    }
+  }
 }

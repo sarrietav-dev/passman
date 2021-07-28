@@ -1,4 +1,5 @@
 @import 'sass/variables.scss';
+@import 'sass/mixins.scss';
 
 *,
 *::before,
@@ -11,6 +12,10 @@
 :root {
   font-size: 62.5%;
   box-sizing: border-box;
+
+  @include phone-styles {
+    font-size: 55%;
+  }
 }
 
 body {
@@ -21,4 +26,3 @@ body {
 .App {
   display: flex;
 }
-

@@ -28,12 +28,13 @@ body {
 }
 
 .hamburger-menu {
-  position: absolute;
-  right: 3rem;
-  top: 2rem;
-  font-size: 3.5rem;
+  display: none;
 
-  &--hidden {
-    display: none;
+  @include phone-styles {
+    display: initial;
+    position: absolute;
+    right: 3rem;
+    top: 2rem;
+    font-size: 3.5rem;
   }
 }

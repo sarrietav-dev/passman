@@ -7,10 +7,12 @@ import { v4 as uuid } from 'uuid';
 import './side-bar.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { orderItems, setCurrentItem } from '../../store/reducers/App.reducer';
+import { hideNavbar } from '../../store/reducers/Navbar.reducer';
 
 export const SideBar = () => {
   const [searchString, setSearchString] = useState('');
   let { vaultItems, currentItem } = useAppSelector((state) => state.app);
+  const { shown } = useAppSelector((state) => state.navbar);
   const dispatch = useAppDispatch();
 
   const renderVaultItem = () => {
@@ -22,7 +24,10 @@ export const SideBar = () => {
 
     return vaultItems.map((item) => (
       <VaultItem
-        onClick={() => dispatch(setCurrentItem(item.id))}
+        onClick={() => {
+          dispatch(setCurrentItem(item.id));
+          dispatch(hideNavbar());
+        }}
         title={item.account_name}
         username={item.username}
         imageUrl={item.logo_url}
@@ -33,8 +38,8 @@ export const SideBar = () => {
   };
 
   return (
-    <nav className="nav">
-      <div className="close-btn">
+    <nav className={`nav ${!shown && 'nav--hidden'}`}>
+      <div className="close-btn" onClick={() => dispatch(hideNavbar())}>
         <i className="fa fa-times"></i>
       </div>
       <header>

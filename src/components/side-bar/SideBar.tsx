@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 
 import './side-bar.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { setCurrentItem } from '../../store/reducers/AppReducer.reducer';
+import { setCurrentItem } from '../../store/reducers/App.reducer';
 
 export const SideBar = () => {
   const { vaultItems, currentItem } = useAppSelector((state) => state.app);

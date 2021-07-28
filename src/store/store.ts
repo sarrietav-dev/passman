@@ -1,4 +1,4 @@
-import appReducer from './reducers/AppReducer.reducer';
+import appReducer from './reducers/App.reducer';
 import { configureStore } from '@reduxjs/toolkit'; // ...
 export const store = configureStore({ reducer: { app: appReducer } });
 

@@ -6,7 +6,7 @@ import {
   setCurrentItem,
   setItems,
   updateItem,
-} from '../reducers/AppReducer.reducer';
+} from '../reducers/App.reducer';
 
 export const fetchItems = createAsyncThunk('app/fetchItems', async (_, thunkAPI) => {
   const response = await axios.get<VaultItem[]>(

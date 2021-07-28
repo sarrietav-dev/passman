@@ -34,14 +34,21 @@ export const SideBar = () => {
 
   return (
     <nav className="nav">
+      <div className="close-btn">
+        <i className="fa fa-times"></i>
+      </div>
       <header>
         <SearchBar changeSearchString={setSearchString} />
         <CreateButton />
       </header>
       <div className="order-buttons">
         Sort by Date:
-        <button className="btn" onClick={() => dispatch(orderItems('DESC'))}>DESC</button>
-        <button className="btn" onClick={() => dispatch(orderItems('ASC'))}>ASC</button>
+        <button className="btn" onClick={() => dispatch(orderItems('DESC'))}>
+          DESC
+        </button>
+        <button className="btn" onClick={() => dispatch(orderItems('ASC'))}>
+          ASC
+        </button>
       </div>
       <div className="vault-items">{renderVaultItem()}</div>
     </nav>

@@ -1,4 +1,5 @@
 @import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
 
 .nav {
   min-width: 25%;
@@ -7,6 +8,10 @@
   padding: 3rem;
   padding-right: 0;
   height: 100vh;
+
+  @include phone-styles {
+    display: none;
+  }
 
   .vault-items {
     height: 100%;

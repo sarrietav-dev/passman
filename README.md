@@ -10,7 +10,7 @@ Simple password manager made with React
 
 ## Screenshots
 
-![image](https://user-images.githubusercontent.com/25210925/127112656-5541f9b5-83cd-4425-86ee-3eb9a8123095.png)
+![image](https://user-images.githubusercontent.com/25210925/127370630-462ccf8a-9513-4bc7-a5ec-6638a8c1d9e5.png)
 
 ## Tech Stack
 

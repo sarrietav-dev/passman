@@ -1,4 +1,5 @@
 @import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
 
 .address-details {
   --logo-bg-color: hsl(0, 0%, 70%);
@@ -11,6 +12,10 @@
   width: 100%;
   background-color: $main-bg-color;
   border-left: 0.5px solid $black;
+
+  @include phone-styles {
+    padding: 1rem 2rem;
+  }
 
   hr {
     margin: 2rem 0;

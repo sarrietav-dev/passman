@@ -26,3 +26,14 @@ body {
 .App {
   display: flex;
 }
+
+.hamburger-menu {
+  position: absolute;
+  right: 3rem;
+  top: 2rem;
+  font-size: 3.5rem;
+
+  &--hidden {
+    display: none;
+  }
+}

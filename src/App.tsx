@@ -15,6 +15,9 @@ function App() {
 
   return (
     <div className="App">
+      <div className="hamburger-menu hamburger-menu--hidden">
+        <i className="fa fa-bars"></i>
+      </div>
       <SideBar />
       <AddressDetails />
     </div>

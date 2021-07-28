@@ -72,10 +72,12 @@ header {
 
       transition: all 0.2s;
 
+      &--invalid,
+      &:focus:invalid {
+        border-bottom: 0.3rem solid $error-red;
+      }
+
       &:focus {
-        &:invalid {
-          border-bottom: 0.3rem solid $error-red;
-        }
         &:valid {
           border-bottom: 0.3rem solid $success-green;
         }

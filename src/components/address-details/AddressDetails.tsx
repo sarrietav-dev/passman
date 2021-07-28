@@ -1,11 +1,10 @@
-import React, { FormEvent, RefObject, useRef, useState } from 'react';
+import React, { FormEvent, RefObject, useRef } from 'react';
 import './address-details.scss';
 import '../../sass/button.scss';
 import { AddressDetailsForm } from './AddressDetailsForm';
 import { v4 as uuid } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { patchItem, postItem } from '../../store/thunks/app-thunks';
-import axios from 'axios';
 
 export const AddressDetails = () => {
   const { currentItem } = useAppSelector((state) => state.app);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { AddressDetails } from './components/address-details/AddressDetails';
 import './App.scss';
 
@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchItems());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">

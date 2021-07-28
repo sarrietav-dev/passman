@@ -1,4 +1,4 @@
-import React, { RefObject, useRef, useState } from 'react';
+import React, { RefObject, useState } from 'react';
 import './address-details.scss';
 import '../../sass/button.scss';
 import { Img } from '../Img';
@@ -10,7 +10,13 @@ interface AddressDetailState {
   showPassword: boolean;
 }
 
-export const AddressDetailsForm = () => {
+interface AddressDetailsProps {
+  refs: {
+    [key: string]: RefObject<HTMLInputElement>;
+  };
+}
+
+export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
   const { currentItem } = useAppSelector((state) => state.app);
   const { editingMode } = useAppSelector((state) => state.form);
   const dispatch = useAppDispatch();
@@ -19,12 +25,6 @@ export const AddressDetailsForm = () => {
     name: undefined,
     showPassword: false,
   });
-
-  const nameFieldRef = useRef<HTMLInputElement>(null);
-  const usernameFieldRef = useRef<HTMLInputElement>(null);
-  const passwordFieldRef = useRef<HTMLInputElement>(null);
-  const urlFieldRef = useRef<HTMLInputElement>(null);
-  const logoFieldRef = useRef<HTMLInputElement>(null);
 
   const focusInput = (ref: RefObject<HTMLInputElement>) => {
     ref.current?.focus();
@@ -54,7 +54,7 @@ export const AddressDetailsForm = () => {
         className={`form__field form__field--header ${
           !editingMode ? 'form__field--disabled' : ''
         }`}
-        onClick={() => focusInput(nameFieldRef)}
+        onClick={() => focusInput(refs.nameFieldRef)}
       >
         <span className="account-logo">
           {currentItem?.logo_url === '' || currentItem === undefined ? (
@@ -72,7 +72,7 @@ export const AddressDetailsForm = () => {
             if (e.target.value !== '')
               setState({ ...state, name: e.target.value });
           }}
-          ref={nameFieldRef}
+          ref={refs.nameFieldRef}
           disabled={!editingMode}
           required
           defaultValue={currentItem?.account_name}
@@ -81,7 +81,7 @@ export const AddressDetailsForm = () => {
       <hr />
       <div
         className={`form__field ${!editingMode ? 'form__field--disabled' : ''}`}
-        onClick={() => focusInput(usernameFieldRef)}
+        onClick={() => focusInput(refs.usernameFieldRef)}
       >
         <label htmlFor="username">Username</label>
         <input
@@ -89,7 +89,7 @@ export const AddressDetailsForm = () => {
           name="username"
           autoComplete="false"
           required
-          ref={usernameFieldRef}
+          ref={refs.usernameFieldRef}
           disabled={!editingMode}
           defaultValue={currentItem?.username}
         />
@@ -99,7 +99,7 @@ export const AddressDetailsForm = () => {
         className={`form__field form__field--pass ${
           !editingMode ? 'form__field--disabled' : ''
         }`}
-        onClick={() => focusInput(passwordFieldRef)}
+        onClick={() => focusInput(refs.passwordFieldRef)}
       >
         <div className="password-field-wrapper">
           <label htmlFor="password">Password</label>
@@ -110,7 +110,7 @@ export const AddressDetailsForm = () => {
             id="password-field"
             autoComplete="false"
             required
-            ref={passwordFieldRef}
+            ref={refs.passwordFieldRef}
             disabled={!editingMode}
             defaultValue={currentItem?.password}
           />
@@ -130,7 +130,7 @@ export const AddressDetailsForm = () => {
               className="btn btn--password"
               onClick={(e) => {
                 e.preventDefault();
-                passwordFieldRef.current!.value = generatePassword();
+                refs.passwordFieldRef.current!.value = generatePassword();
               }}
             >
               <i className="fa fa-refresh"></i>
@@ -140,7 +140,9 @@ export const AddressDetailsForm = () => {
             className="btn btn--password"
             onClick={(e) => {
               e.preventDefault();
-              navigator.clipboard.writeText(passwordFieldRef.current!.value);
+              navigator.clipboard.writeText(
+                refs.passwordFieldRef.current!.value,
+              );
             }}
           >
             <i className="fa fa-copy"></i>
@@ -150,7 +152,7 @@ export const AddressDetailsForm = () => {
 
       <div
         className={`form__field ${!editingMode ? 'form__field--disabled' : ''}`}
-        onClick={() => focusInput(urlFieldRef)}
+        onClick={() => focusInput(refs.urlFieldRef)}
       >
         <label htmlFor="site-url">Site URL</label>
         <input
@@ -159,14 +161,14 @@ export const AddressDetailsForm = () => {
           id=""
           autoComplete="false"
           required
-          ref={urlFieldRef}
+          ref={refs.urlFieldRef}
           disabled={!editingMode}
           defaultValue={currentItem?.site_url}
         />
       </div>
       <div
         className={`form__field ${!editingMode ? 'form__field--disabled' : ''}`}
-        onClick={() => focusInput(logoFieldRef)}
+        onClick={() => focusInput(refs.logoFieldRef)}
       >
         <label htmlFor="site-url">Logo URL</label>
         <input
@@ -174,7 +176,7 @@ export const AddressDetailsForm = () => {
           name="site-url"
           id=""
           autoComplete="false"
-          ref={logoFieldRef}
+          ref={refs.logoFieldRef}
           disabled={!editingMode}
           defaultValue={currentItem?.logo_url}
         />

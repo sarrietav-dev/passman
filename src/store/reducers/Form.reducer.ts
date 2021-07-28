@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   editingMode: false,
+  submitting: false,
 };
 
 const formSlice = createSlice({
@@ -14,8 +15,12 @@ const formSlice = createSlice({
     setEditingModeToTrue(state) {
       state.editingMode = true;
     },
+    switchSubmitMode(state) {
+      state.submitting = !state.submitting;
+    },
   },
 });
 
-export const { switchEditingMode, setEditingModeToTrue } = formSlice.actions;
+export const { switchEditingMode, setEditingModeToTrue, switchSubmitMode } =
+  formSlice.actions;
 export default formSlice.reducer;

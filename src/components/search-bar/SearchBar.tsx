@@ -1,11 +1,22 @@
 import React from 'react';
+
 import './search-bar.scss';
 
-export const SearchBar = () => {
+interface SearchBarProps {
+  changeSearchString: (_: string) => void;
+}
+
+export const SearchBar = ({ changeSearchString }: SearchBarProps) => {
   return (
     <div className="search-bar">
       <i className="fa fa-search"></i>
-      <input type="text" name="" id="" placeholder="Search password" />
+      <input
+        type="text"
+        onChange={(e) => {
+          changeSearchString(e.target.value);
+        }}
+        placeholder="Search password"
+      />
     </div>
   );
 };

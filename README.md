@@ -14,7 +14,7 @@ Simple password manager made with React
 
 ## Tech Stack
 
-**Client:** React, TypeScript, Sass, Redux Toolkit.
+**Client:** React, TypeScript, Sass, Redux Toolkit.  
 **Server:** Json-server.
 
 ## Acknowledgements

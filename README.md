@@ -17,6 +17,13 @@ Simple password manager made with React
 **Client:** React, TypeScript, Sass, Redux Toolkit.  
 **Server:** Json-server.
 
+## How to deploy
+
+- Clone this repository.
+- Go to the folder.
+- Run `yarn install` or `npm install`.
+- Run `npm run serve` or `yarn serve` to start the app and the server.
+
 ## Acknowledgements
 
 - Design forked from [Artem Nosenko via Dribbble](https://dribbble.com/shots/13907643-Bitwarden-Design-Concept-for-macOS). Big Thanks!

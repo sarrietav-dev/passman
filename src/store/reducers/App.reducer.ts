@@ -21,10 +21,12 @@ export const appSlice = createSlice({
     addItem: (state, action: PayloadAction<VaultItem>) => {
       state.vaultItems.push(action.payload);
     },
-    setCurrentItem: (state, action: PayloadAction<string>) => {
-      state.currentItem = state.vaultItems.find(
-        (item) => item.id === action.payload,
-      );
+    setCurrentItem: (state, action: PayloadAction<string | undefined>) => {
+      if (!action.payload) state.currentItem = undefined;
+      else
+        state.currentItem = state.vaultItems.find(
+          (item) => item.id === action.payload,
+        );
     },
     updateItem: (state, action: PayloadAction<VaultItem>) => {
       const vaultItems = state.vaultItems.filter(

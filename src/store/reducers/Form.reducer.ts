@@ -11,8 +11,11 @@ const formSlice = createSlice({
     switchEditingMode(state) {
       state.editingMode = !state.editingMode;
     },
+    setEditingModeToTrue(state) {
+      state.editingMode = true;
+    },
   },
 });
 
-export const { switchEditingMode } = formSlice.actions;
+export const { switchEditingMode, setEditingModeToTrue } = formSlice.actions;
 export default formSlice.reducer;

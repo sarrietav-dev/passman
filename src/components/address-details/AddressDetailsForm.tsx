@@ -2,23 +2,18 @@ import React, { RefObject, useRef, useState } from 'react';
 import './address-details.scss';
 import '../../sass/button.scss';
 import { Img } from '../Img';
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { switchEditingMode } from '../../store/reducers/Form.reducer';
 
 interface AddressDetailState {
   name: string | undefined;
   showPassword: boolean;
 }
 
-interface AddressDetailsFormProps {
-  editingMode: boolean;
-  handleEditingMode: () => void;
-}
-
-export const AddressDetailsForm = ({
-  editingMode,
-  handleEditingMode,
-}: AddressDetailsFormProps) => {
+export const AddressDetailsForm = () => {
   const { currentItem } = useAppSelector((state) => state.app);
+  const { editingMode } = useAppSelector((state) => state.form);
+  const dispatch = useAppDispatch();
 
   const [state, setState] = useState<AddressDetailState>({
     name: undefined,
@@ -191,7 +186,7 @@ export const AddressDetailsForm = ({
       <div className="action-buttons">
         <button
           className={`btn btn--${editingMode ? 'submit' : 'edit'}`}
-          onClick={editingMode ? () => {} : handleEditingMode}
+          onClick={editingMode ? () => {} : () => dispatch(switchEditingMode())}
           type={editingMode ? 'submit' : 'button'}
           form={editingMode ? 'form' : ''}
         >

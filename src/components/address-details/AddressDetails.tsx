@@ -9,13 +9,8 @@ import { patchItem, postItem } from '../../store/thunks/app-thunks';
 
 export const AddressDetails = () => {
   const { currentItem } = useAppSelector((state) => state.app);
+  const { editingMode } = useAppSelector((state) => state.form);
   const dispatch = useAppDispatch();
-
-  const [state, setState] = useState({
-    editingMode: false,
-  });
-
-  const handleEditingMode = () => setState({ editingMode: !state.editingMode });
 
   const onSubmit = (e: any) => {
     const [id, account_name, username, password, url, logoUrl, created_at] = [
@@ -39,9 +34,7 @@ export const AddressDetails = () => {
           site_url: url as string,
           logo_url: logoUrl as string,
         }),
-      ).then(() => {
-        handleEditingMode();
-      });
+      );
     } else {
       dispatch(
         patchItem({
@@ -53,21 +46,14 @@ export const AddressDetails = () => {
           site_url: url as string,
           logo_url: logoUrl as string,
         }),
-      ).then(() => {
-        handleEditingMode();
-      });
+      );
     }
   };
 
   const getFormParent = () => {
-    const child = (
-      <AddressDetailsForm
-        editingMode={state.editingMode}
-        handleEditingMode={handleEditingMode}
-      />
-    );
+    const child = <AddressDetailsForm />;
 
-    return state.editingMode ? (
+    return editingMode ? (
       <form className="form" id="form" onSubmit={onSubmit}>
         {child}
       </form>

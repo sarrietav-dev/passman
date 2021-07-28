@@ -1,6 +1,9 @@
 import appReducer from './reducers/App.reducer';
 import { configureStore } from '@reduxjs/toolkit'; // ...
-export const store = configureStore({ reducer: { app: appReducer } });
+import formReducer from './reducers/Form.reducer';
+export const store = configureStore({
+  reducer: { app: appReducer, form: formReducer },
+});
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

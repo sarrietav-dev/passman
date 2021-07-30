@@ -22,6 +22,8 @@ export const AddressDetails = () => {
   };
 
   const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
     if (currentItem === undefined) {
       dispatch(
         postItem({
@@ -53,7 +55,7 @@ export const AddressDetails = () => {
     const child = <AddressDetailsForm refs={refs} />;
 
     return editingMode ? (
-      <form className="form" id="form" onSubmit={onSubmit}>
+      <form className="form" id="form" onSubmit={onSubmit} method="POST">
         {child}
       </form>
     ) : (

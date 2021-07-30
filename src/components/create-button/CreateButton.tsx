@@ -2,6 +2,7 @@ import React from 'react';
 import { useAppDispatch } from '../../store/hooks';
 import { setCurrentItem } from '../../store/reducers/App.reducer';
 import { setEditingModeToTrue } from '../../store/reducers/Form.reducer';
+import { hideNavbar } from '../../store/reducers/Navbar.reducer';
 import './create-button.scss';
 
 export const CreateButton = () => {
@@ -12,6 +13,7 @@ export const CreateButton = () => {
       onClick={() => {
         dispatch(setEditingModeToTrue());
         dispatch(setCurrentItem(undefined));
+        dispatch(hideNavbar());
       }}
     >
       +

@@ -4,6 +4,7 @@ import '../../sass/button.scss';
 import { Img } from '../Img';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { switchEditingMode } from '../../store/reducers/Form.reducer';
+import { deleteItem } from '../../store/thunks/app-thunks';
 
 interface AddressDetailState {
   name: string | undefined;
@@ -195,10 +196,15 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
           <i className={`fa fa-${editingMode ? 'check' : 'pencil'}`}></i>
           {editingMode ? 'Submit' : 'Edit'}
         </button>
-        <button className="btn btn--delete">
-          <i className="fa fa-trash"></i>
-          Delete
-        </button>
+        {currentItem !== undefined && (
+          <button
+            className="btn btn--delete"
+            onClick={() => dispatch(deleteItem(currentItem))}
+          >
+            <i className="fa fa-trash"></i>
+            Delete
+          </button>
+        )}
       </div>
     </>
   );

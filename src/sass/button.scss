@@ -50,7 +50,8 @@
     }
   }
 
-  &--submit {
+  &--submit,
+  &--submit:hover {
     background-color: $success-green;
   }
 

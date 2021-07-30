@@ -1,4 +1,5 @@
 @import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
 
 .nav {
   min-width: 25%;
@@ -8,10 +9,39 @@
   padding-right: 0;
   height: 100vh;
 
+  @include phone-styles {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem;
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  .close-btn {
+    display: none;
+
+    @include phone-styles {
+      font-size: 3rem;
+      margin-bottom: 3rem;
+      margin-top: -1rem;
+      padding-right: 3rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
   .vault-items {
     height: 100%;
     overflow: scroll;
     overflow-x: hidden;
+
+    @include phone-styles {
+      padding-right: 3rem;
+    }
   }
 
   header {

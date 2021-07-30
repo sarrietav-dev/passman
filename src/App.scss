@@ -1,4 +1,5 @@
 @import 'sass/variables.scss';
+@import 'sass/mixins.scss';
 
 *,
 *::before,
@@ -11,14 +12,30 @@
 :root {
   font-size: 62.5%;
   box-sizing: border-box;
+
+  @include phone-styles {
+    font-size: 55%;
+  }
 }
 
 body {
   color: $font-color;
   font-family: $Noto;
+  overflow: hidden;
 }
 
 .App {
   display: flex;
 }
 
+.hamburger-menu {
+  display: none;
+
+  @include phone-styles {
+    display: initial;
+    position: absolute;
+    right: 3rem;
+    top: 2rem;
+    font-size: 3.5rem;
+  }
+}

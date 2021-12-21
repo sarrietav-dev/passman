@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SearchBar } from '../search-bar/SearchBar';
 import { CreateButton } from '../create-button/CreateButton';
 import { VaultItem } from '../vault-item/VaultItem';

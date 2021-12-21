@@ -1,4 +1,4 @@
-import React, { FormEvent, RefObject, useRef } from 'react';
+import { FormEvent, RefObject, useRef } from 'react';
 import './address-details.scss';
 import '../../sass/button.scss';
 import { AddressDetailsForm } from './AddressDetailsForm';

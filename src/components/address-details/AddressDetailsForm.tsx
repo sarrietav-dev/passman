@@ -1,4 +1,4 @@
-import React, { RefObject, useState } from 'react';
+import { RefObject, useState } from 'react';
 import './address-details.scss';
 import '../../sass/button.scss';
 import { Img } from '../Img';

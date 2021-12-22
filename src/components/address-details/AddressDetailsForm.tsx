@@ -1,10 +1,9 @@
 import { RefObject, useState } from 'react';
-import './address-details.scss';
-import '../../sass/button.scss';
 import { Img } from '../Img';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { switchEditingMode } from '../../store/reducers/Form.reducer';
 import { deleteItem } from '../../store/thunks/app-thunks';
+import FormField from './components/FormField';
 
 interface AddressDetailState {
   name: string | undefined;
@@ -51,11 +50,10 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
 
   return (
     <>
-      <header
-        className={`form__field form__field--header ${
-          !editingMode ? 'form__field--disabled' : ''
-        }`}
-        onClick={() => focusInput(refs.nameFieldRef)}
+      <FormField
+        className="flex place-content-center font-roboto"
+        editing={editingMode}
+        ref={refs.nameFieldRef}
       >
         <span className="account-logo">
           {currentItem?.logo_url === '' || currentItem === undefined ? (
@@ -78,12 +76,9 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
           required
           defaultValue={currentItem?.account_name}
         />
-      </header>
+      </FormField>
       <hr />
-      <div
-        className={`form__field ${!editingMode ? 'form__field--disabled' : ''}`}
-        onClick={() => focusInput(refs.usernameFieldRef)}
-      >
+      <FormField editing={editingMode} ref={refs.usernameFieldRef}>
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -94,15 +89,14 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
           disabled={!editingMode}
           defaultValue={currentItem?.username}
         />
-      </div>
+      </FormField>
 
-      <div
-        className={`form__field form__field--pass ${
-          !editingMode ? 'form__field--disabled' : ''
-        }`}
-        onClick={() => focusInput(refs.passwordFieldRef)}
+      <FormField
+        className="flex items-center"
+        editing={editingMode}
+        ref={refs.passwordFieldRef}
       >
-        <div className="password-field-wrapper">
+        <div className="basis-4/5">
           <label htmlFor="password">Password</label>
           <input
             type={state.showPassword ? 'text' : 'password'}
@@ -149,12 +143,9 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
             <i className="fa fa-copy"></i>
           </button>
         </div>
-      </div>
+      </FormField>
 
-      <div
-        className={`form__field ${!editingMode ? 'form__field--disabled' : ''}`}
-        onClick={() => focusInput(refs.urlFieldRef)}
-      >
+      <FormField editing={editingMode} ref={refs.urlFieldRef}>
         <label htmlFor="site-url">Site URL</label>
         <input
           type="url"
@@ -166,11 +157,8 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
           disabled={!editingMode}
           defaultValue={currentItem?.site_url}
         />
-      </div>
-      <div
-        className={`form__field ${!editingMode ? 'form__field--disabled' : ''}`}
-        onClick={() => focusInput(refs.logoFieldRef)}
-      >
+      </FormField>
+      <FormField editing={editingMode} ref={refs.urlFieldRef}>
         <label htmlFor="site-url">Logo URL</label>
         <input
           type="url"
@@ -181,11 +169,11 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
           disabled={!editingMode}
           defaultValue={currentItem?.logo_url}
         />
-      </div>
-      <div className="form__field">
+      </FormField>
+      <FormField>
         <label htmlFor="">Created at</label>
         <p className="creation-date">{currentItem?.created_at}</p>
-      </div>
+      </FormField>
       <div className="action-buttons">
         <button
           className={`btn btn--${editingMode ? 'submit' : 'edit'}`}

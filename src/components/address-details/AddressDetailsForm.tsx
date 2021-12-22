@@ -1,4 +1,4 @@
-import React, { RefObject, useState } from 'react';
+import { RefObject, useState } from 'react';
 import { Img } from '../Img';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { switchEditingMode } from '../../store/reducers/Form.reducer';
@@ -69,7 +69,7 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
         editing={editingMode}
         ref={refs.nameFieldRef}
       >
-        <span className="account-logo">
+        <span className="text-3xl text-gray-400 w-16 h-16 text-center rounded inline-flex place-items-center">
           <ItemLogo />
         </span>
         <FormInput
@@ -85,7 +85,7 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
           }}
         />
       </FormField>
-      <hr />
+      <hr className="mx-0 my-5" />
       <FormField editing={editingMode} ref={refs.usernameFieldRef}>
         <label htmlFor="username">Username</label>
         <FormInput
@@ -115,7 +115,7 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
             type={state.showPassword ? 'text' : 'password'}
           />
         </div>
-        <div className="password-buttons">
+        <div>
           <ShowPasswordButton state={state} setState={setState} />
           {editingMode && (
             <GeneratePasswordButton
@@ -150,10 +150,10 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
         />
       </FormField>
       <FormField>
-        <label htmlFor="">Created at</label>
-        <p className="creation-date">{currentItem?.created_at}</p>
+        <label>Created at</label>
+        <p>{currentItem?.created_at}</p>
       </FormField>
-      <div className="action-buttons">
+      <div className="flex justify-end items-stretch">
         <SubmitButton dispatch={dispatch} editing={editingMode} />
         {currentItem !== undefined && (
           <DeleteItemButton dispatch={dispatch} currentItem={currentItem} />

@@ -153,15 +153,7 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
         <p className="creation-date">{currentItem?.created_at}</p>
       </FormField>
       <div className="action-buttons">
-        <button
-          className={`btn btn--${editingMode ? 'submit' : 'edit'}`}
-          onClick={editingMode ? () => {} : () => dispatch(switchEditingMode())}
-          type={editingMode ? 'submit' : 'button'}
-          form={editingMode ? 'form' : ''}
-        >
-          <i className={`fa fa-${editingMode ? 'check' : 'pencil'}`}></i>
-          {editingMode ? 'Submit' : 'Edit'}
-        </button>
+        <SubmitButton dispatch={dispatch} editing={editingMode} />
         {currentItem !== undefined && (
           <DeleteItemButton dispatch={dispatch} currentItem={currentItem} />
         )}
@@ -169,6 +161,26 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
     </>
   );
 };
+
+function SubmitButton({
+  editing,
+  dispatch,
+}: {
+  editing: boolean;
+  dispatch: Dispatch<AnyAction> & ThunkDispatch<{}, null, AnyAction>;
+}) {
+  return (
+    <button
+      className={`btn btn--${editing ? 'submit' : 'edit'}`}
+      onClick={editing ? () => {} : () => dispatch(switchEditingMode())}
+      type={editing ? 'submit' : 'button'}
+      form={editing ? 'form' : ''}
+    >
+      <i className={`fa fa-${editing ? 'check' : 'pencil'}`}></i>
+      {editing ? 'Submit' : 'Edit'}
+    </button>
+  );
+}
 
 function DeleteItemButton({
   dispatch,

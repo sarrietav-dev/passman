@@ -31,10 +31,6 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
     showPassword: false,
   });
 
-  const focusInput = (ref: RefObject<HTMLInputElement>) => {
-    ref.current?.focus();
-  };
-
   function generatePassword() {
     var length = 12,
       charset =

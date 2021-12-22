@@ -90,7 +90,6 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
           defaultValue={currentItem?.username}
         />
       </FormField>
-
       <FormField
         className="flex items-center"
         editing={editingMode}
@@ -111,40 +110,16 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
           />
         </div>
         <div className="password-buttons">
-          <button
-            className="btn btn--password"
-            onClick={(e) => {
-              e.preventDefault();
-              setState({ ...state, showPassword: !state.showPassword });
-            }}
-          >
-            <i className={`fa fa-eye${state.showPassword ? '-slash' : ''}`}></i>
-          </button>
+          <ShowPasswordButton state={state} setState={setState} />
           {editingMode && (
-            <button
-              className="btn btn--password"
-              onClick={(e) => {
-                e.preventDefault();
-                refs.passwordFieldRef.current!.value = generatePassword();
-              }}
-            >
-              <i className="fa fa-refresh"></i>
-            </button>
+            <GeneratePasswordButton
+              ref={refs.passwordFieldRef}
+              generatePassword={generatePassword}
+            />
           )}
-          <button
-            className="btn btn--password"
-            onClick={(e) => {
-              e.preventDefault();
-              navigator.clipboard.writeText(
-                refs.passwordFieldRef.current!.value,
-              );
-            }}
-          >
-            <i className="fa fa-copy"></i>
-          </button>
+          <CopyToClipboardButton ref={refs.passwordFieldRef} />
         </div>
       </FormField>
-
       <FormField editing={editingMode} ref={refs.urlFieldRef}>
         <label htmlFor="site-url">Site URL</label>
         <input
@@ -197,3 +172,57 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
     </>
   );
 };
+
+const ShowPasswordButton = ({
+  state,
+  setState,
+}: {
+  setState: React.Dispatch<React.SetStateAction<AddressDetailState>>;
+  state: AddressDetailState;
+}) => {
+  return (
+    <button
+      className="btn btn--password"
+      onClick={(e) => {
+        e.preventDefault();
+        setState({ ...state, showPassword: !state.showPassword });
+      }}
+    >
+      <i className={`fa fa-eye${state.showPassword ? '-slash' : ''}`}></i>
+    </button>
+  );
+};
+
+function CopyToClipboardButton({ ref }: { ref: RefObject<HTMLInputElement> }) {
+  return (
+    <button
+      className="btn btn--password"
+      onClick={(e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText(ref.current!.value);
+      }}
+    >
+      <i className="fa fa-copy"></i>
+    </button>
+  );
+}
+
+function GeneratePasswordButton({
+  ref,
+  generatePassword,
+}: {
+  ref: RefObject<HTMLInputElement>;
+  generatePassword: () => string;
+}) {
+  return (
+    <button
+      className="btn btn--password"
+      onClick={(e) => {
+        e.preventDefault();
+        ref.current!.value = generatePassword();
+      }}
+    >
+      <i className="fa fa-refresh"></i>
+    </button>
+  );
+}

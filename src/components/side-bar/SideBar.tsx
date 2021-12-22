@@ -38,7 +38,7 @@ export const SideBar = () => {
 
   return (
     <nav
-      className={`absolute z-10 w-full h-full lg:h-screen lg:min-w-[25%] bg-neutral-800 border-solid border-r-[0.5px] border-r-black p-8 pr-0 ${
+      className={`absolute lg:block lg:w-1/4 z-10 w-full h-full lg:h-screen lg:min-w-[25%] bg-neutral-800 border-solid border-r-[0.5px] border-r-black p-8 pr-0 ${
         !shown && 'hidden'
       }`}
     >

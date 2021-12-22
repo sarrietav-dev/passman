@@ -1,4 +1,4 @@
-import { RefObject, useState } from 'react';
+import React, { RefObject, useState } from 'react';
 import { Img } from '../Img';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { switchEditingMode } from '../../store/reducers/Form.reducer';
@@ -11,6 +11,7 @@ import {
 } from './components/password-buttons';
 import { VaultItem } from '../../types/types';
 import { AnyAction, Dispatch, ThunkDispatch } from '@reduxjs/toolkit';
+import { FormInput } from './components/FormInput';
 
 export interface AddressDetailState {
   name: string | undefined;
@@ -71,32 +72,29 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
         <span className="account-logo">
           <ItemLogo />
         </span>
-        <input
+        <FormInput
           type="text"
-          name=""
-          className="account-name"
           placeholder="Account name"
+          className="text-3xl ml-5 w-4/5"
+          editing={editingMode}
+          ref={refs.nameFieldRef}
+          currentItem={currentItem?.account_name ?? ''}
           onChange={(e) => {
             if (e.target.value !== '')
               setState({ ...state, name: e.target.value });
           }}
-          ref={refs.nameFieldRef}
-          disabled={!editingMode}
-          required
-          defaultValue={currentItem?.account_name}
         />
       </FormField>
       <hr />
       <FormField editing={editingMode} ref={refs.usernameFieldRef}>
         <label htmlFor="username">Username</label>
-        <input
+        <FormInput
           type="text"
           name="username"
           autoComplete="false"
-          required
           ref={refs.usernameFieldRef}
-          disabled={!editingMode}
-          defaultValue={currentItem?.username}
+          editing={editingMode}
+          currentItem={currentItem?.username ?? ''}
         />
       </FormField>
       <FormField
@@ -106,16 +104,15 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
       >
         <div className="basis-4/5">
           <label htmlFor="password">Password</label>
-          <input
-            type={state.showPassword ? 'text' : 'password'}
+          <FormInput
             name="password"
-            className="form__field"
             id="password-field"
             autoComplete="false"
-            required
+            className="p-4 inline-block rounded transition"
+            editing={editingMode}
             ref={refs.passwordFieldRef}
-            disabled={!editingMode}
-            defaultValue={currentItem?.password}
+            currentItem={currentItem?.password ?? ''}
+            type={state.showPassword ? 'text' : 'password'}
           />
         </div>
         <div className="password-buttons">
@@ -131,27 +128,25 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
       </FormField>
       <FormField editing={editingMode} ref={refs.urlFieldRef}>
         <label htmlFor="site-url">Site URL</label>
-        <input
+        <FormInput
           type="url"
           name="site-url"
-          id=""
           autoComplete="false"
-          required
           ref={refs.urlFieldRef}
+          editing={editingMode}
           disabled={!editingMode}
-          defaultValue={currentItem?.site_url}
+          currentItem={currentItem?.site_url ?? ''}
         />
       </FormField>
       <FormField editing={editingMode} ref={refs.urlFieldRef}>
         <label htmlFor="site-url">Logo URL</label>
-        <input
+        <FormInput
           type="url"
           name="site-url"
-          id=""
           autoComplete="false"
+          editing={editingMode}
           ref={refs.logoFieldRef}
-          disabled={!editingMode}
-          defaultValue={currentItem?.logo_url}
+          currentItem={currentItem?.logo_url ?? ''}
         />
       </FormField>
       <FormField>

@@ -9,6 +9,8 @@ import {
   GeneratePasswordButton,
   CopyToClipboardButton,
 } from './components/password-buttons';
+import { VaultItem } from '../../types/types';
+import { AnyAction, Dispatch, ThunkDispatch } from '@reduxjs/toolkit';
 
 export interface AddressDetailState {
   name: string | undefined;
@@ -161,15 +163,27 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
           {editingMode ? 'Submit' : 'Edit'}
         </button>
         {currentItem !== undefined && (
-          <button
-            className="btn btn--delete"
-            onClick={() => dispatch(deleteItem(currentItem))}
-          >
-            <i className="fa fa-trash"></i>
-            Delete
-          </button>
+          <DeleteItemButton dispatch={dispatch} currentItem={currentItem} />
         )}
       </div>
     </>
   );
 };
+
+function DeleteItemButton({
+  dispatch,
+  currentItem,
+}: {
+  dispatch: Dispatch & ThunkDispatch<{}, null, AnyAction>;
+  currentItem: VaultItem;
+}) {
+  return (
+    <button
+      className="btn btn--delete"
+      onClick={() => dispatch(deleteItem(currentItem))}
+    >
+      <i className="fa fa-trash"></i>
+      Delete
+    </button>
+  );
+}

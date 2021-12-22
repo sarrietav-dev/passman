@@ -1,5 +1,4 @@
 import { FormEvent, RefObject, useRef } from 'react';
-import './address-details.scss';
 import '../../sass/button.scss';
 import { AddressDetailsForm } from './AddressDetailsForm';
 import { v4 as uuid } from 'uuid';
@@ -55,13 +54,22 @@ export const AddressDetails = () => {
     const child = <AddressDetailsForm refs={refs} />;
 
     return editingMode ? (
-      <form className="form" id="form" onSubmit={onSubmit} method="POST">
+      <form
+        className="flex flex-col -mt-5"
+        id="form"
+        onSubmit={onSubmit}
+        method="POST"
+      >
         {child}
       </form>
     ) : (
-      <div className="form">{child}</div>
+      <div className="flex flex-col -mt-5">{child}</div>
     );
   };
 
-  return <div className="address-details">{getFormParent()}</div>;
+  return (
+    <div className="px-5 py-3 lg:py-14 lg:px-28 flex flex-col justify-evenly h-screen w-full bg-neutral-800 border-l-[0.5px] border-solid border-black">
+      {getFormParent()}
+    </div>
+  );
 };

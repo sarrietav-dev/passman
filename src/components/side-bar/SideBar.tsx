@@ -52,16 +52,16 @@ export const SideBar = () => {
         <SearchBar changeSearchString={setSearchString} />
         <CreateButton />
       </header>
-      <div className="flex justify-end items-center pr-8 mx-3 py-0">
+      <div className="flex justify-end items-center pr-8 my-3 px-0">
         Sort by Date:
         <button
-          className="px-1 py-2"
+          className="py-1 px-2"
           onClick={() => dispatch(orderItems('DESC'))}
         >
           DESC
         </button>
         <button
-          className="px-1 py-2"
+          className="py-1 px-2"
           onClick={() => dispatch(orderItems('ASC'))}
         >
           ASC

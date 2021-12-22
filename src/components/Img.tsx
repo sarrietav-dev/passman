@@ -13,6 +13,7 @@ export const Img = ({ url, title }: ImgProps) => {
       if (!imgError) {
         return (
           <img
+            className="w-full z-10 rounded m-auto"
             src={url}
             alt="Vault item logo. Probably a logo of a company."
             onError={() => {

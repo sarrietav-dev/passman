@@ -44,6 +44,16 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
     return retVal;
   }
 
+  const ItemLogo = () =>
+    isLogoAvailable() ? (
+      <Img url={currentItem?.logo_url} title={getLogoText()} />
+    ) : (
+      <>getLogoText()</>
+    );
+
+  const isLogoAvailable = () =>
+    currentItem?.logo_url !== '' || currentItem !== undefined;
+
   const getLogoText = () => {
     if (currentItem) return currentItem?.account_name.charAt(0).toUpperCase();
     return state.name === undefined || state.name === ''
@@ -59,11 +69,7 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
         ref={refs.nameFieldRef}
       >
         <span className="account-logo">
-          {currentItem?.logo_url === '' || currentItem === undefined ? (
-            getLogoText()
-          ) : (
-            <Img url={currentItem?.logo_url} title={getLogoText()} />
-          )}
+          <ItemLogo />
         </span>
         <input
           type="text"

@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { AddressDetails } from './components/address-details/AddressDetails';
-import './App.scss';
 
 import { SideBar } from './components/side-bar/SideBar';
 import { useAppDispatch } from './store/hooks';
@@ -15,9 +14,9 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="App">
+    <div className="font-noto text-white overflow-hidden flex">
       <div
-        className="hamburger-menu"
+        className="absolute top-5 right-8 text-3xl lg:hidden"
         onClick={() => dispatch(showNavbar())}
       >
         <i className="fa fa-bars"></i>

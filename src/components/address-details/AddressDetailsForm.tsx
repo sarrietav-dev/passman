@@ -4,8 +4,13 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { switchEditingMode } from '../../store/reducers/Form.reducer';
 import { deleteItem } from '../../store/thunks/app-thunks';
 import FormField from './components/FormField';
+import {
+  ShowPasswordButton,
+  GeneratePasswordButton,
+  CopyToClipboardButton,
+} from './components/password-buttons';
 
-interface AddressDetailState {
+export interface AddressDetailState {
   name: string | undefined;
   showPassword: boolean;
 }
@@ -172,57 +177,3 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
     </>
   );
 };
-
-const ShowPasswordButton = ({
-  state,
-  setState,
-}: {
-  setState: React.Dispatch<React.SetStateAction<AddressDetailState>>;
-  state: AddressDetailState;
-}) => {
-  return (
-    <button
-      className="btn btn--password"
-      onClick={(e) => {
-        e.preventDefault();
-        setState({ ...state, showPassword: !state.showPassword });
-      }}
-    >
-      <i className={`fa fa-eye${state.showPassword ? '-slash' : ''}`}></i>
-    </button>
-  );
-};
-
-function CopyToClipboardButton({ ref }: { ref: RefObject<HTMLInputElement> }) {
-  return (
-    <button
-      className="btn btn--password"
-      onClick={(e) => {
-        e.preventDefault();
-        navigator.clipboard.writeText(ref.current!.value);
-      }}
-    >
-      <i className="fa fa-copy"></i>
-    </button>
-  );
-}
-
-function GeneratePasswordButton({
-  ref,
-  generatePassword,
-}: {
-  ref: RefObject<HTMLInputElement>;
-  generatePassword: () => string;
-}) {
-  return (
-    <button
-      className="btn btn--password"
-      onClick={(e) => {
-        e.preventDefault();
-        ref.current!.value = generatePassword();
-      }}
-    >
-      <i className="fa fa-refresh"></i>
-    </button>
-  );
-}

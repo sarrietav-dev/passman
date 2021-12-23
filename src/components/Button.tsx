@@ -1,11 +1,9 @@
-import React from 'react';
-
 interface ButtonProps {
   className: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-type ComponentType = React.FunctionComponent<
+type ComponentType = React.FC<
   ButtonProps &
     React.DetailedHTMLProps<
       React.ButtonHTMLAttributes<HTMLButtonElement>,

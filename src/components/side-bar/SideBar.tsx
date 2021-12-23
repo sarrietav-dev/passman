@@ -7,6 +7,7 @@ import { v4 as uuid } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { orderItems, setCurrentItem } from '../../store/reducers/App.reducer';
 import { hideNavbar } from '../../store/reducers/Navbar.reducer';
+import { Button } from '../Button';
 
 export const SideBar = () => {
   const [searchString, setSearchString] = useState('');
@@ -54,18 +55,18 @@ export const SideBar = () => {
       </header>
       <div className="flex justify-end items-center pr-8 my-3 px-0">
         Sort by Date:
-        <button
+        <Button
           className="py-1 px-2"
           onClick={() => dispatch(orderItems('DESC'))}
         >
           DESC
-        </button>
-        <button
+        </Button>
+        <Button
           className="py-1 px-2"
           onClick={() => dispatch(orderItems('ASC'))}
         >
           ASC
-        </button>
+        </Button>
       </div>
       <div className="pr-8 lg:pr-0 h-full overflow-scroll overflow-x-hidden">
         {renderVaultItem()}

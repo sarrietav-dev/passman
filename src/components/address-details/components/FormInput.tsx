@@ -12,7 +12,7 @@ export const FormInput = ({
 > & { editing: boolean; currentItem: string }) => (
   <input
     type={type}
-    className={`w-full px-3 py-2 mr-3 bg-transparent outline-none rounded border-2 border-transparent transition focus:invalid:border-red-500 focus:valid:border-green-500 hover:bg-transparent ${className}`}
+    className={`w-full px-3 py-2 mr-3 bg-transparent outline-none rounded border-2 border-transparent transition focus:invalid:border-red-500 focus:valid:border-green-500 hover:bg-transparent disabled:hover:bg-transparent ${className}`}
     placeholder={placeholder}
     onChange={onChange}
     ref={ref}

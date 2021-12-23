@@ -1,59 +1,67 @@
+import { Button } from '../../Button';
 import { AddressDetailState } from '../AddressDetailsForm';
 
-export const ShowPasswordButton = ({
-  state,
-  setState,
-}: {
+interface PasswordButtonProps {
+  callback: () => any;
+}
+
+const PasswordButton: React.FC<PasswordButtonProps> = ({
+  children,
+  callback,
+}) => (
+  <Button
+    className="group bg-transparent px-3 py-1"
+    onClick={(e) => {
+      e.preventDefault();
+      callback();
+    }}
+  >
+    {children}
+  </Button>
+);
+
+interface ShowPasswordButtonProps {
   setState: React.Dispatch<React.SetStateAction<AddressDetailState>>;
   state: AddressDetailState;
-}) => {
-  return (
-    <button
-      className="btn btn--password"
-      onClick={(e) => {
-        e.preventDefault();
-        setState({ ...state, showPassword: !state.showPassword });
-      }}
-    >
-      <i className={`fa fa-eye${state.showPassword ? '-slash' : ''}`}></i>
-    </button>
-  );
-};
+}
 
-export const CopyToClipboardButton = ({
-  ref,
-}: {
-  ref: React.RefObject<HTMLInputElement>;
-}) => {
-  return (
-    <button
-      className="btn btn--password"
-      onClick={(e) => {
-        e.preventDefault();
-        navigator.clipboard.writeText(ref.current!.value);
-      }}
-    >
-      <i className="fa fa-copy"></i>
-    </button>
-  );
-};
+export const ShowPasswordButton: React.FC<ShowPasswordButtonProps> = ({
+  state,
+  setState,
+}) => (
+  <PasswordButton
+    callback={() => setState({ ...state, showPassword: !state.showPassword })}
+  >
+    <i
+      className={`text-inherit group-hover:text-gray-400 fa fa-eye${
+        state.showPassword ? '-slash' : ''
+      }`}
+    ></i>
+  </PasswordButton>
+);
 
-export const GeneratePasswordButton = ({
+type CopyToClipboardButtonProps = { ref: React.RefObject<HTMLInputElement> };
+
+export const CopyToClipboardButton: React.FC<CopyToClipboardButtonProps> = ({
   ref,
-  generatePassword,
-}: {
+}) => (
+  <PasswordButton
+    callback={() => navigator.clipboard.writeText(ref.current!.value)}
+  >
+    <i className="text-inherit group-hover:text-gray-400 fa fa-copy"></i>
+  </PasswordButton>
+);
+
+interface GeneratePasswordButtonProps {
   ref: React.RefObject<HTMLInputElement>;
   generatePassword: () => string;
-}) => {
-  return (
-    <button
-      className="btn btn--password"
-      onClick={(e) => {
-        e.preventDefault();
-        ref.current!.value = generatePassword();
-      }}
-    >
-      <i className="fa fa-refresh"></i>
-    </button>
-  );
-};
+}
+
+export const GeneratePasswordButton: React.FC<GeneratePasswordButtonProps> = ({
+  ref,
+  generatePassword,
+}) => (
+  <PasswordButton callback={() => (ref.current!.value = generatePassword())}>
+    <i className="text-inherit group-hover:text-gray-400 fa fa-refresh"></i>
+  </PasswordButton>
+);

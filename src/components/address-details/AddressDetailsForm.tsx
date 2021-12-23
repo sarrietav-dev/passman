@@ -96,12 +96,14 @@ function SubmitButton({
 }) {
   return (
     <Button
-      className={`${editing ? 'submit' : 'edit'}`}
+      className={`px-4 py-3 flex place-items-center hover:-translate-y-0.5 hover:text-white hover:shadow active:shadow active:bg-white active:bg-opacity-50 ${
+        editing ? 'bg-green-500' : ''
+      }`}
       onClick={editing ? () => {} : () => dispatch(switchEditingMode())}
       type={editing ? 'submit' : 'button'}
       form={editing ? 'form' : ''}
     >
-      <i className={`fa fa-${editing ? 'check' : 'pencil'}`}></i>
+      <i className={`text-inherit fa fa-${editing ? 'check' : 'pencil'}`}></i>
       {editing ? 'Submit' : 'Edit'}
     </Button>
   );
@@ -116,10 +118,10 @@ function DeleteItemButton({
 }) {
   return (
     <Button
-      className="btn--delete"
+      className="px-4 py-3 flex place-items-center hover:-translate-y-0.5 hover:text-white hover:bg-red-500 hover:shadow active:shadow active:bg-white active:bg-opacity-50"
       onClick={() => dispatch(deleteItem(currentItem))}
     >
-      <i className="fa fa-trash"></i>
+      <i className="fa fa-trash text-inherit"></i>
       Delete
     </Button>
   );

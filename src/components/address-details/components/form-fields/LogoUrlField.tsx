@@ -1,4 +1,3 @@
-
 import FormField from '../FormField';
 import { FormInput } from '../FormInput';
 import { FormInputProps } from './FormInputProps';
@@ -8,7 +7,7 @@ export const LogoUrlField = ({
   currentItemName: currentItem,
   ref,
 }: FormInputProps) => (
-  <FormField editing={editing} ref={ref}>
+  <FormField ref={ref}>
     <label htmlFor="logo-url">Logo URL</label>
     <FormInput
       type="url"

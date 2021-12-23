@@ -7,7 +7,7 @@ export const SiteUrlField = ({
   currentItemName: currentItem,
   ref,
 }: FormInputProps) => (
-  <FormField editing={editing} ref={ref}>
+  <FormField ref={ref}>
     <label htmlFor="site-url">Site URL</label>
     <FormInput
       type="url"

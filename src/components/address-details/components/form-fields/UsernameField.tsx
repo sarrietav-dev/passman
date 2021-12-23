@@ -7,7 +7,7 @@ export const UsernameField = ({
   editing,
   currentItemName: currentItem,
 }: FormInputProps) => (
-  <FormField editing={editing} ref={ref}>
+  <FormField ref={ref}>
     <label htmlFor="username">Username</label>
     <FormInput
       type="text"

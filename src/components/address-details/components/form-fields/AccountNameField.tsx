@@ -37,11 +37,7 @@ export const AccountNameField = ({
   };
 
   return (
-    <FormField
-      className="flex place-content-center font-roboto"
-      editing={editing}
-      ref={ref}
-    >
+    <FormField className="flex place-content-center font-roboto" ref={ref}>
       <span className="text-3xl text-gray-400 w-16 h-16 text-center rounded inline-flex place-items-center">
         <ItemLogo />
       </span>

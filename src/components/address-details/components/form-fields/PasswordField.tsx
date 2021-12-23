@@ -35,7 +35,7 @@ export const PasswordField = ({
   }
 
   return (
-    <FormField className="flex items-center" editing={editing} ref={ref}>
+    <FormField className="flex items-center" ref={ref}>
       <div className="basis-4/5">
         <label htmlFor="password">Password</label>
         <FormInput

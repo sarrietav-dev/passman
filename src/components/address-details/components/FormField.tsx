@@ -1,26 +1,16 @@
-import { FunctionComponent, RefObject } from 'react';
-
 interface FormFieldProps {
   className?: string;
-  editing?: boolean;
-  ref?: RefObject<HTMLInputElement>;
+  ref?: React.RefObject<HTMLInputElement>;
 }
 
-const FormField: FunctionComponent<FormFieldProps> = ({
-  className,
-  editing,
-  ref,
-  children,
-}) => {
-  const focusInput = (ref?: RefObject<HTMLInputElement>) => {
+const FormField: React.FC<FormFieldProps> = ({ className, ref, children }) => {
+  const focusInput = (ref?: React.RefObject<HTMLInputElement>) => {
     ref?.current?.focus();
   };
 
   return (
     <div
-      className={`p-4 inline-block rounded transition  ${className ?? ''} ${
-        !editing ? 'form__field--disabled' : ''
-      }`}
+      className={`p-4 inline-block rounded transition  ${className ?? ''}`}
       onClick={() => focusInput(ref)}
     >
       {children}

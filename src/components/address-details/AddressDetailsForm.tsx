@@ -10,6 +10,7 @@ import { LogoUrlField } from './components/form-fields/LogoUrlField';
 import { PasswordField } from './components/form-fields/PasswordField';
 import { SiteUrlField } from './components/form-fields/SiteUrlField';
 import { UsernameField } from './components/form-fields/UsernameField';
+import { Button } from '../Button';
 export interface AddressDetailState {
   name: string | undefined;
   showPassword: boolean;
@@ -94,15 +95,15 @@ function SubmitButton({
   dispatch: Dispatch<AnyAction> & ThunkDispatch<{}, null, AnyAction>;
 }) {
   return (
-    <button
-      className={`btn btn--${editing ? 'submit' : 'edit'}`}
+    <Button
+      className={`${editing ? 'submit' : 'edit'}`}
       onClick={editing ? () => {} : () => dispatch(switchEditingMode())}
       type={editing ? 'submit' : 'button'}
       form={editing ? 'form' : ''}
     >
       <i className={`fa fa-${editing ? 'check' : 'pencil'}`}></i>
       {editing ? 'Submit' : 'Edit'}
-    </button>
+    </Button>
   );
 }
 
@@ -114,12 +115,12 @@ function DeleteItemButton({
   currentItem: VaultItem;
 }) {
   return (
-    <button
-      className="btn btn--delete"
+    <Button
+      className="btn--delete"
       onClick={() => dispatch(deleteItem(currentItem))}
     >
       <i className="fa fa-trash"></i>
       Delete
-    </button>
+    </Button>
   );
 }

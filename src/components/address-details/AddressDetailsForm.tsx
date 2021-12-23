@@ -5,14 +5,11 @@ import { deleteItem } from '../../store/thunks/app-thunks';
 import FormField from './components/FormField';
 import { VaultItem } from '../../types/types';
 import { AnyAction, Dispatch, ThunkDispatch } from '@reduxjs/toolkit';
-import {
-  AccountNameField,
-  LogoUrlField,
-  PasswordField,
-  SiteUrlField,
-  UsernameField,
-} from './components/form-fields';
-
+import { AccountNameField } from './components/form-fields/AccountNameField';
+import { LogoUrlField } from './components/form-fields/LogoUrlField';
+import { PasswordField } from './components/form-fields/PasswordField';
+import { SiteUrlField } from './components/form-fields/SiteUrlField';
+import { UsernameField } from './components/form-fields/UsernameField';
 export interface AddressDetailState {
   name: string | undefined;
   showPassword: boolean;

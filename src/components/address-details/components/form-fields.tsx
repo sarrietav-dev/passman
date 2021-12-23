@@ -16,6 +16,12 @@ interface FormInputProps {
   currentItemName: string | undefined;
 }
 
+type AccountNameFieldProps = FormInputProps & {
+  currentItem: VaultItem | undefined;
+  state: AddressDetailState;
+  setState: React.Dispatch<any>;
+};
+
 export const AccountNameField = ({
   editing,
   ref,
@@ -23,11 +29,7 @@ export const AccountNameField = ({
   currentItem,
   state,
   setState,
-}: FormInputProps & {
-  currentItem: VaultItem | undefined;
-  state: AddressDetailState;
-  setState: React.Dispatch<any>;
-}) => {
+}: AccountNameFieldProps) => {
   const ItemLogo = () =>
     isLogoAvailable() ? (
       <Img url={currentItem?.logo_url} title={getLogoText()} />
@@ -88,6 +90,12 @@ export const UsernameField = ({
   </FormField>
 );
 
+type PasswordFieldProps = FormInputProps & {
+  showPassword: boolean;
+  setState: React.Dispatch<any>;
+  state: AddressDetailState;
+};
+
 export const PasswordField = ({
   editing,
   currentItemName: currentItem,
@@ -95,11 +103,7 @@ export const PasswordField = ({
   showPassword,
   state,
   setState,
-}: FormInputProps & {
-  showPassword: boolean;
-  setState: React.Dispatch<any>;
-  state: AddressDetailState;
-}) => {
+}: PasswordFieldProps) => {
   function generatePassword() {
     var length = 12,
       charset =

@@ -1,12 +1,17 @@
 import { RefObject, useState } from 'react';
-import './address-details.scss';
-import '../../sass/button.scss';
-import { Img } from '../Img';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { switchEditingMode } from '../../store/reducers/Form.reducer';
 import { deleteItem } from '../../store/thunks/app-thunks';
-
-interface AddressDetailState {
+import FormField from './components/FormField';
+import { VaultItem } from '../../types/types';
+import { AnyAction, Dispatch, ThunkDispatch } from '@reduxjs/toolkit';
+import { AccountNameField } from './components/form-fields/AccountNameField';
+import { LogoUrlField } from './components/form-fields/LogoUrlField';
+import { PasswordField } from './components/form-fields/PasswordField';
+import { SiteUrlField } from './components/form-fields/SiteUrlField';
+import { UsernameField } from './components/form-fields/UsernameField';
+import { Button } from '../Button';
+export interface AddressDetailState {
   name: string | undefined;
   showPassword: boolean;
 }
@@ -27,185 +32,97 @@ export const AddressDetailsForm = ({ refs }: AddressDetailsProps) => {
     showPassword: false,
   });
 
-  const focusInput = (ref: RefObject<HTMLInputElement>) => {
-    ref.current?.focus();
-  };
-
-  function generatePassword() {
-    var length = 12,
-      charset =
-        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
-      retVal = '';
-    for (var i = 0, n = charset.length; i < length; ++i) {
-      retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-    return retVal;
-  }
-
-  const getLogoText = () => {
-    if (currentItem) return currentItem?.account_name.charAt(0).toUpperCase();
-    return state.name === undefined || state.name === ''
-      ? '@'
-      : state.name.charAt(0).toUpperCase();
-  };
-
   return (
     <>
-      <header
-        className={`form__field form__field--header ${
-          !editingMode ? 'form__field--disabled' : ''
-        }`}
-        onClick={() => focusInput(refs.nameFieldRef)}
-      >
-        <span className="account-logo">
-          {currentItem?.logo_url === '' || currentItem === undefined ? (
-            getLogoText()
-          ) : (
-            <Img url={currentItem?.logo_url} title={getLogoText()} />
-          )}
-        </span>
-        <input
-          type="text"
-          name=""
-          className="account-name"
-          placeholder="Account name"
-          onChange={(e) => {
-            if (e.target.value !== '')
-              setState({ ...state, name: e.target.value });
-          }}
-          ref={refs.nameFieldRef}
-          disabled={!editingMode}
-          required
-          defaultValue={currentItem?.account_name}
-        />
-      </header>
-      <hr />
-      <div
-        className={`form__field ${!editingMode ? 'form__field--disabled' : ''}`}
-        onClick={() => focusInput(refs.usernameFieldRef)}
-      >
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          autoComplete="false"
-          required
-          ref={refs.usernameFieldRef}
-          disabled={!editingMode}
-          defaultValue={currentItem?.username}
-        />
-      </div>
+      <AccountNameField
+        state={state}
+        setState={setState}
+        editing={editingMode}
+        ref={refs.nameFieldRef}
+        currentItem={currentItem}
+        currentItemName={currentItem?.account_name}
+      />
 
-      <div
-        className={`form__field form__field--pass ${
-          !editingMode ? 'form__field--disabled' : ''
-        }`}
-        onClick={() => focusInput(refs.passwordFieldRef)}
-      >
-        <div className="password-field-wrapper">
-          <label htmlFor="password">Password</label>
-          <input
-            type={state.showPassword ? 'text' : 'password'}
-            name="password"
-            className="form__field"
-            id="password-field"
-            autoComplete="false"
-            required
-            ref={refs.passwordFieldRef}
-            disabled={!editingMode}
-            defaultValue={currentItem?.password}
-          />
-        </div>
-        <div className="password-buttons">
-          <button
-            className="btn btn--password"
-            onClick={(e) => {
-              e.preventDefault();
-              setState({ ...state, showPassword: !state.showPassword });
-            }}
-          >
-            <i className={`fa fa-eye${state.showPassword ? '-slash' : ''}`}></i>
-          </button>
-          {editingMode && (
-            <button
-              className="btn btn--password"
-              onClick={(e) => {
-                e.preventDefault();
-                refs.passwordFieldRef.current!.value = generatePassword();
-              }}
-            >
-              <i className="fa fa-refresh"></i>
-            </button>
-          )}
-          <button
-            className="btn btn--password"
-            onClick={(e) => {
-              e.preventDefault();
-              navigator.clipboard.writeText(
-                refs.passwordFieldRef.current!.value,
-              );
-            }}
-          >
-            <i className="fa fa-copy"></i>
-          </button>
-        </div>
-      </div>
+      <hr className="mx-0 my-5" />
 
-      <div
-        className={`form__field ${!editingMode ? 'form__field--disabled' : ''}`}
-        onClick={() => focusInput(refs.urlFieldRef)}
-      >
-        <label htmlFor="site-url">Site URL</label>
-        <input
-          type="url"
-          name="site-url"
-          id=""
-          autoComplete="false"
-          required
-          ref={refs.urlFieldRef}
-          disabled={!editingMode}
-          defaultValue={currentItem?.site_url}
-        />
-      </div>
-      <div
-        className={`form__field ${!editingMode ? 'form__field--disabled' : ''}`}
-        onClick={() => focusInput(refs.logoFieldRef)}
-      >
-        <label htmlFor="site-url">Logo URL</label>
-        <input
-          type="url"
-          name="site-url"
-          id=""
-          autoComplete="false"
-          ref={refs.logoFieldRef}
-          disabled={!editingMode}
-          defaultValue={currentItem?.logo_url}
-        />
-      </div>
-      <div className="form__field">
-        <label htmlFor="">Created at</label>
-        <p className="creation-date">{currentItem?.created_at}</p>
-      </div>
-      <div className="action-buttons">
-        <button
-          className={`btn btn--${editingMode ? 'submit' : 'edit'}`}
-          onClick={editingMode ? () => {} : () => dispatch(switchEditingMode())}
-          type={editingMode ? 'submit' : 'button'}
-          form={editingMode ? 'form' : ''}
-        >
-          <i className={`fa fa-${editingMode ? 'check' : 'pencil'}`}></i>
-          {editingMode ? 'Submit' : 'Edit'}
-        </button>
+      <UsernameField
+        editing={editingMode}
+        ref={refs.usernameFieldRef}
+        currentItemName={currentItem?.username}
+      />
+
+      <PasswordField
+        state={state}
+        setState={setState}
+        editing={editingMode}
+        ref={refs.passwordFieldRef}
+        currentItemName={currentItem?.password}
+        showPassword={state.showPassword}
+      />
+
+      <SiteUrlField
+        ref={refs.urlFieldRef}
+        editing={editingMode}
+        currentItemName={currentItem?.site_url}
+      />
+
+      <LogoUrlField
+        editing={editingMode}
+        ref={refs.logoFieldRef}
+        currentItemName={currentItem?.logo_url ?? ''}
+      />
+
+      <FormField>
+        <label>Created at</label>
+        <p>{currentItem?.created_at}</p>
+      </FormField>
+
+      <div className="flex justify-end items-stretch">
+        <SubmitButton dispatch={dispatch} editing={editingMode} />
         {currentItem !== undefined && (
-          <button
-            className="btn btn--delete"
-            onClick={() => dispatch(deleteItem(currentItem))}
-          >
-            <i className="fa fa-trash"></i>
-            Delete
-          </button>
+          <DeleteItemButton dispatch={dispatch} currentItem={currentItem} />
         )}
       </div>
     </>
   );
 };
+
+function SubmitButton({
+  editing,
+  dispatch,
+}: {
+  editing: boolean;
+  dispatch: Dispatch<AnyAction> & ThunkDispatch<{}, null, AnyAction>;
+}) {
+  return (
+    <Button
+      className={`px-4 py-3 flex place-items-center hover:-translate-y-0.5 hover:text-white hover:shadow active:shadow active:bg-white active:bg-opacity-50 ${
+        editing ? 'bg-green-500' : ''
+      }`}
+      onClick={editing ? () => {} : () => dispatch(switchEditingMode())}
+      type={editing ? 'submit' : 'button'}
+      form={editing ? 'form' : ''}
+    >
+      <i className={`text-inherit fa fa-${editing ? 'check' : 'pencil'}`}></i>
+      {editing ? 'Submit' : 'Edit'}
+    </Button>
+  );
+}
+
+function DeleteItemButton({
+  dispatch,
+  currentItem,
+}: {
+  dispatch: Dispatch & ThunkDispatch<{}, null, AnyAction>;
+  currentItem: VaultItem;
+}) {
+  return (
+    <Button
+      className="px-4 py-3 flex place-items-center hover:-translate-y-0.5 hover:text-white hover:bg-red-500 hover:shadow active:shadow active:bg-white active:bg-opacity-50"
+      onClick={() => dispatch(deleteItem(currentItem))}
+    >
+      <i className="fa fa-trash text-inherit"></i>
+      Delete
+    </Button>
+  );
+}

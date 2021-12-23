@@ -4,10 +4,10 @@ import { CreateButton } from '../create-button/CreateButton';
 import { VaultItem } from '../vault-item/VaultItem';
 import { v4 as uuid } from 'uuid';
 
-import './side-bar.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { orderItems, setCurrentItem } from '../../store/reducers/App.reducer';
 import { hideNavbar } from '../../store/reducers/Navbar.reducer';
+import { Button } from '../Button';
 
 export const SideBar = () => {
   const [searchString, setSearchString] = useState('');
@@ -38,24 +38,39 @@ export const SideBar = () => {
   };
 
   return (
-    <nav className={`nav ${!shown && 'nav--hidden'}`}>
-      <div className="close-btn" onClick={() => dispatch(hideNavbar())}>
+    <nav
+      className={`absolute lg:block lg:w-1/4 z-10 w-full h-full lg:h-screen lg:min-w-[25%] bg-neutral-800 border-solid border-r-[0.5px] border-r-black p-8 pr-0 ${
+        !shown && 'hidden'
+      }`}
+    >
+      <div
+        className="text-3xl mb-8 -mt-3 pr-8 flex justify-end lg:hidden"
+        onClick={() => dispatch(hideNavbar())}
+      >
         <i className="fa fa-times"></i>
       </div>
-      <header>
+      <header className="flex items-stretch pr-8">
         <SearchBar changeSearchString={setSearchString} />
         <CreateButton />
       </header>
-      <div className="order-buttons">
+      <div className="flex justify-end items-center pr-8 my-3 px-0">
         Sort by Date:
-        <button className="btn" onClick={() => dispatch(orderItems('DESC'))}>
+        <Button
+          className="py-1 px-2"
+          onClick={() => dispatch(orderItems('DESC'))}
+        >
           DESC
-        </button>
-        <button className="btn" onClick={() => dispatch(orderItems('ASC'))}>
+        </Button>
+        <Button
+          className="py-1 px-2"
+          onClick={() => dispatch(orderItems('ASC'))}
+        >
           ASC
-        </button>
+        </Button>
       </div>
-      <div className="vault-items">{renderVaultItem()}</div>
+      <div className="pr-8 lg:pr-0 h-full overflow-scroll overflow-x-hidden">
+        {renderVaultItem()}
+      </div>
     </nav>
   );
 };
